@@ -1,0 +1,46 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block AddExercise %}
+<div class="container spad">
+    <div class="row pt-5 justify-content-center">
+        <div class="col-lg-6">
+            <div class="section-title chart-calculate-title">
+                <span>For Your Plans</span>
+                <h2>Exercise Editor</h2>
+            </div>
+            <div class="chart-calculate-form">
+                    <form method="POST" enctype='multipart/form-data' id="exercise_input_form">
+
+                        {%csrf_token%}
+
+                            <div class="form-group col-md-12">
+                                
+                                    {% render_field form.exercise_name type="text" class="form-control choosebox" placeholder="Exercise Name"%}
+                                
+                            </div>
+                            <div class="form-group col-md-12">
+                                
+                                    {% render_field form.exercise_category type="text" class="form-control choosebox" placeholder="Exercise Category"%}
+                                
+                            </div>
+                            <div class="form-group col-md-12">
+                                {% render_field form.exercise_image type="file" class="form-control choosebox"%}
+                            </div>
+                            <div class="form-group col-md-12">
+                                    {% render_field form.exercise_details type="text" class="form-control choosebox" placeholder="Exercise Details"%}
+                            </div>
+                            <div class="d-flex display-justify-center mb-4">
+                                <div class="col-md-12">
+                                <button type="submit" >Edit</button>
+                                </div>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock AddExercise %}

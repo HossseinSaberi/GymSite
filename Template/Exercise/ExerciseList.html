@@ -1,0 +1,204 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block ExerciseList %}
+
+<div class="d-flex justify-content-center mt-5 spad">
+    <a class='btn btn-outline-success btn-lg m-2' href="{% url 'CreateExercise'%}">New Exercise</a>
+    <a class='btn btn-outline-primary btn-lg m-2' href="{% url 'CreateExerciseCategory'%}">New Category</a>
+    <a class='btn btn-outline-warning btn-lg m-2' href="{% url 'CreateDomain'%}">New Domain</a>
+  </div>
+<hr>
+<div class="tab">
+  <button class="tablinks" onclick="callTable(event, 'Exercise')" id="defaultOpen">Exercise</button>
+  <button class="tablinks" onclick="callTable(event, 'Category')">Category</button>
+  <button class="tablinks" onclick="callTable(event, 'Domain')">Domain</button>
+</div>
+<div class="card-body">
+  <div class="tabcontent" id="Exercise">
+  <div class="table-responsive class-timetable details-timetable">
+    <table class="table table-bordered table-hover" >
+        <thead class=" text-primary">
+          <tr>
+            <th>
+              NAME
+            </th>
+            <th>
+              CATEGORY
+            </th>
+            <th>
+                IMAGE
+            </th>
+            <th>
+                Detail
+            </th>
+            <th>
+                MANAGE
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for object in AllExercise %}
+            
+            <tr>
+                <td>
+                    {{object.exercise_name}}
+                </td>
+                <td>
+                    {{object.exercise_category}}
+                </td>
+                <td>
+                    <img src="{{object.exercise_image.url}}" alt="{{object.exercise_image}}" id="food-list">
+                </td>
+                <td>
+                    {{object.exercise_details}}
+                </td>
+                <td>
+                    <div >
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirm/" id="manage-icon">
+                          <i class='fa fa-trash'></i>
+                        </a>
+                        <a class='d-inline-block border-2 mx-3' href="/manage_exercise/{{object.id}}/EditExercise/" id="manage-icon">
+                          <i class='fa fa-edit'></i>
+                        </a>
+                      </div>
+                </td>
+              </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tabcontent" id="Category">
+    <div class="table-responsive class-timetable details-timetable">
+      <table class="table table-bordered table-hover" >
+        <thead class=" text-primary">
+          <tr>
+            <th>
+              TITLE
+            </th>
+            <th>
+              IMAGE
+            </th>
+            <th>
+              PARENT
+            </th>
+            <th>
+                MANAGE
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for object in AllCategory %}
+            
+            <tr>
+                <td>
+                    {{object.title}}
+                </td>
+                <td>
+                  <img src="{{object.image.url}}" alt="{{object.image}}" id="food-list">
+                </td>
+                <td>
+                    {{object.parent}}
+                </td>
+                <td>
+                    <div >
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirm/" id="manage-icon">
+                          <i class='fa fa-trash'></i>
+                        </a>
+                        <a class='d-inline-block border-2 mx-3' href="/manage_exercise/{{object.id}}/EditExerciseCategory/" id="manage-icon">
+                          <i class='fa fa-edit'></i>
+                        </a>
+                      </div>
+                </td>
+              </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+  <div class="tabcontent" id="Domain">
+    <div class="table-responsive class-timetable details-timetable">
+      <table class="table table-bordered table-hover" >
+        <thead class=" text-primary">
+          <tr>
+            <th>
+              TITLE
+            </th>
+            <th>
+              SET
+            </th>
+            <th>
+              COUNT
+            </th>
+            <th>
+              REST
+            </th>
+            <th>
+                MANAGE
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for object in AllDomain %}
+            
+            <tr>
+                <td>
+                    {{object.title}}
+                </td>
+                <td>
+                    {{object.set}}
+                </td>
+                <td>
+                    {{object.count}}
+                </td>
+                <td>
+                    {{object.rest}}
+                </td>
+                <td>
+                    <div >
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmDomain/" id="manage-icon">
+                          <i class='fa fa-trash'></i>
+                        </a>
+                        <a class='d-inline-block border-2 mx-3' href="/manage_exercise/{{object.id}}/EditDomain/" id="manage-icon">
+                          <i class='fa fa-edit'></i>
+                        </a>
+                      </div>
+                </td>
+              </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+
+
+
+<script>
+  function callTable(evt , tableName){
+    var i , tabcontent , tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i=0 ; i<tabcontent.length ; i++){
+      tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName("tablinks");
+    for(i=0 ; i<tablinks.length ; i++){
+      tablinks[i].className = tablinks[i].className.replace(" active" , "");
+    }
+
+    document.getElementById(tableName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+</script>
+{% endblock ExerciseList %}

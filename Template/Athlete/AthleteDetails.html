@@ -1,0 +1,265 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block AthleteDetail %}
+<!-- Class Details Section Begin -->
+<section class="class-details-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="class-details-text">
+                    <div class="">
+                        <img src="img/classes/class-details/class-detailsl.jpg" alt="">
+                    </div>
+                    <div class="cd-trainer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="cd-trainer-pic">
+                                    <img src="{{object.user_image.url}}" alt="{{object.user_image}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="cd-trainer-text">
+                                    <div class="trainer-title">
+                                        <h4>{{AthleteContext.username}}</h4>
+                                        <span>Trainer</span>
+                                    </div>
+                                    <div class="trainer-social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                        <a href="#"><i class="fa  fa-envelope-o"></i></a>
+                                    </div>
+                                    <ul class="trainer-info">
+                                        <li><span>Age</span>{{AthleteContext.age}}</li>
+                                        <li><span>Weight</span>{{AthleteContext.weight}} kg</li>
+                                        <li><span>Height</span>{{AthleteContext.height}} m</li>
+                                        <li><span>Body Type</span>{{AthleteContext.body_type}}</li>
+                                        <li><span>BMI</span>{{AthleteContext.bmi}}</li>
+                                        <li><span>Body State</span>{{AthleteContext.body_state}}</li>
+                                        <li><span>Mobile Number</span>{{AthleteContext.mobile_number}}</li>
+                                        <li><span>Address</span>{{AthleteContext.address}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8">
+                <div class="sidebar-option">
+                    <div class="so-latest mt-5 ">
+                        <div class="latest-item">
+                            <div class="li-text">
+                                <h6><a href="#exercise_plan">Exercise Plan</a>
+                                {% if exercise_plan %}
+                                    <i class="fa fa-check" id="tik-icon"></i>
+                                {% else %}
+                                    <i class="fa fa-times" id="x-icon"></i>
+                                {% endif %}</h6>
+                                <span class="li-time">{{exercise_plan.exercise_plan.end_date}}</span>
+                            </div>
+                        </div>
+                        <div class="latest-item">
+                            <div class="li-text">
+                                <h6><a href="#food_plan">Food Plan</a>
+                                    {% if food_plan %}
+                                        <i class="fa fa-check" id="tik-icon"></i>
+                                    {% else %}
+                                        <i class="fa fa-times" id="x-icon"></i>
+                                    {% endif %}</h6>
+                                <span class="li-time">{{food_plan.food_plan.end_date}}</span>
+                            </div>
+                            <div class="li-pic">
+                            </div>
+                        </div>
+                        <div class="latest-item">
+                            <div class="li-text">
+                                <h6><a href="#medicine_plan">Medicine Plan</a>
+                                    {% if medicine_plan %}
+                                        <i class="fa fa-check" id="tik-icon"></i>
+                                    {% else %}
+                                        <i class="fa fa-times" id="x-icon"></i>
+                                    {% endif %}
+                                </h6>
+                                <span class="li-time">{{medicine_plan.medicine_plan.end_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Class Details Section End -->
+
+<!-- Class Timetable Section Begin -->
+{% if exercise_plan %}
+<section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="class-details-timetable_title">
+                    <h5>Exercise Plan</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="class-timetable details-timetable">
+                    <table>
+                        <thead>
+                            <tr> 
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                                <th>Sunday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg blank-td"></td>
+                                <td class="hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="blank-td"></td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="blank-td"></td>
+                            </tr>
+                            <tr>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="blank-td"></td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg blank-td"></td>
+                                <td class="hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="motivation">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="dark-bg hover-dp ts-meta" data-tsmeta="fitness">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                                <td class="hover-dp ts-meta" data-tsmeta="workout">
+                                    <h5>UPPER CHEST</h5>
+                                    <span>3 * 15</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% comment %} <div class="row">
+            <div class="col-lg-12">
+                <div class="class-timetable details-timetable">
+                    <table>
+                            {% for day in all_day %}
+                                <th scope="col">{{day}}</th>
+                            {% endfor %}
+                                {% for exe in exercise_plan %}
+                                <tr>
+                                    <td class="dark-bg hover-dp ts-meta" data-tsmeta="workout">
+                                        {% if exe.days == th %}
+                                        <h5>{{exe.exercise.exercise_name}}</h5>
+                                        <span>{{exe.set}} * {{exe.count}}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}                          
+                    </table>
+                </div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+</section>
+{% endif %}
+<!-- Class Timetable Section End -->
+
+{% endblock AthleteDetail %}

@@ -1,0 +1,409 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gym | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/barfiller.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="fa fa-close"></i>
+        </div>
+        <div class="canvas-search search-switch">
+            <i class="fa fa-search"></i>
+        </div>
+        <nav class="canvas-menu mobile-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="./about-us.html">About Us</a></li>
+                <li><a href="./classes.html">Classes</a></li>
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./team.html">Our Team</a></li>
+                <li><a href="#">Pages</a>
+                    <ul class="dropdown">
+                        <li><a href="./about-us.html">Athlete</a></li>
+                        <li><a href="./class-timetable.html">Food</a></li>
+                        <li><a href="./bmi-calculator.html">Exercise</a></li>
+                        <li><a href="./team.html">Medicine</a></li>
+                    </ul>
+                </li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="canvas-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+
+
+    <div class='row'>
+            <!-- Header Section Begin -->
+    <header class="header-section nav-menu">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="{% static 'img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav>
+                        <ul>
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="./about-us.html">About Us</a></li>
+                            <li><a href="{% url 'FoodPlanList' %}">Food Plans</a></li>
+                            <li><a href="{% url 'ExercisePlanList' %}">Exercise Plans</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="{% url 'AthleteList' %}">Athlete</a></li>
+                                    <li><a href="{% url 'FoodList'%}">Food</a></li>
+                                    <li><a href="{% url 'FoodList'%}">Exercise</a></li>
+                                    <li><a href="./team.html">Medicine</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="top-option">
+                        <div class="to-search search-switch">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div class="to-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    </div>
+    
+    <!-- Hero Section -->
+
+    {% block Hero %}{% endblock Hero %}
+
+    <!-- End Hero Section -->
+
+
+    <!-- Add Food Section -->
+    <section class="bmi-calculator-section">
+        {% block AddFood %}{% endblock AddFood %}
+    </section>
+    <!-- End Add Food -->
+
+
+    <!-- Edit Food Section -->
+    <section class="bmi-calculator-section">
+        {% block EditFood %}{% endblock EditFood %}
+    </section>
+    <!-- End Edit Food -->
+    
+    
+    <!-- Food List Section -->
+    <div class="bmi-calculator-section border">
+    {% block FoodList %}{% endblock FoodList %}
+    </div>
+    <!-- End Food List-->
+
+
+    <!-- Confrim Delete Food Section -->
+    <section class="bmi-calculator-section">
+        {% block ConfrimDeleteFood %}{% endblock ConfrimDeleteFood %}
+    </section>
+    <!-- End Confrim Delete Food-->
+
+
+    <!-- Athlete List Section -->
+    <section class="bmi-calculator-section border">
+        {% block AthleteList %}{% endblock AthleteList %}
+    </section>
+    <!-- Athlete List Section-->
+
+
+    <!-- Athlete Details Section -->
+    <section class="bmi-calculator-section border">
+        {% block AthleteDetail %}{% endblock AthleteDetail %}
+    </section>
+    <!-- Athlete Details Section-->
+
+    
+    <!-- Food Plans List Section-->
+    <section class="bmi-calculator-section border">
+    {% block FoodPlansList %}{% endblock FoodPlansList %}
+    </section>
+    <!-- End Food Plans List Section-->
+    
+    
+
+    
+    <!-- Exercise List Section-->
+    <section class="bmi-calculator-section border">
+    {% block ExerciseList %}{% endblock ExerciseList %}
+    </section>
+    <!-- End Exercise List Section-->
+
+
+    <!-- Add Exercise Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddExercise %}{% endblock AddExercise %}
+    </section>
+    <!-- End Add Exercise Section-->
+    
+    
+    <!-- ExercisePlan List Section-->
+    <section class="bmi-calculator-section border">
+        {% block ExercisePlansList %}{% endblock ExercisePlansList %}
+    </section>
+    <!-- End ExercisePlan List Section-->
+    
+    
+    <!-- Add ExercisePlan Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddExercisePlan %}{% endblock AddExercisePlan %}
+    </section>
+    <!-- End Add ExercisePlan Section-->
+    
+    
+    <!-- Edit ExercisePlan Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditExercisePlan %}{% endblock EditExercisePlan %}
+    </section>
+    <!-- End Edit ExercisePlan Section-->
+    
+    
+    <!-- ExercisePlanItem Section-->
+    <section class="bmi-calculator-section border">
+        {% block ExercisePlansItemList %}{% endblock ExercisePlansItemList %}
+    </section>
+    <!-- End ExercisePlanItem Section-->
+    
+    
+    <!-- Edit Exercise Plans Item Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditExercisePlansItem %}{% endblock EditExercisePlansItem %}
+    </section>
+    <!-- End Edit Exercise Plans Item Section-->
+    
+    
+    <!-- Add Domain Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddDomain %}{% endblock AddDomain %}
+    </section>
+    <!-- End Add Domain Section-->
+    
+    <!-- Add Exercise Category Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddExerciseCategory %}{% endblock AddExerciseCategory %}
+    </section>
+    <!-- End Add Exercise Category Section-->
+    
+    
+    <!-- Add Food Plan Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddFoodPlan %}{% endblock AddFoodPlan %}
+    </section>
+    <!-- End Add Food Plan Section-->
+    
+    
+    <!-- Edit Food Plan Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditFoodPlan %}{% endblock EditFoodPlan %}
+    </section>
+    <!-- End Edit Food Plan Section-->
+    
+    
+    <!-- Edit Food Plan Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditExerciseCategory %}{% endblock EditExerciseCategory %}
+    </section>
+    <!-- End Edit Food Plan Section-->
+    
+    
+    <!-- Add Food Plan Items Section-->
+    <section class="bmi-calculator-section border">
+        {% block FoodPlansItemList %}{% endblock FoodPlansItemList %}
+    </section>
+    <!-- End Add Food Plan Items Section-->
+    
+    
+    <!-- Edit Food Plan Items Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditFoodPlansItem %}{% endblock EditFoodPlansItem %}
+    </section>
+    <!-- End Edit Food Plan Items Section-->
+    
+    
+    <!-- Add Athlete Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddAthlete %}{% endblock AddAthlete %}
+    </section>
+    <!-- End Add Athlete Section-->
+    
+    
+    <!-- Edit Athlete Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditAthlete %}{% endblock EditAthlete %}
+    </section>
+    <!-- End Edit Athlete Section-->
+    
+    
+    <!-- Edit Athlete Section-->
+    <section class="bmi-calculator-section border">
+        {% block DeleteConfrimModal %}{% endblock DeleteConfrimModal %}
+    </section>
+    <!-- End Edit Athlete Section-->
+    
+    <!-- Edit Athlete Section-->
+    <section class="bmi-calculator-section border">
+        {% block AddFoodCategory %}{% endblock AddFoodCategory %}
+    </section>
+    <!-- End Edit Athlete Section-->
+    
+    <!-- Edit Athlete Section-->
+    <section class="bmi-calculator-section border">
+        {% block EditFoodCategory %}{% endblock EditFoodCategory %}
+    </section>
+    <!-- End Edit Athlete Section-->
+
+
+
+    
+
+    <!-- Footer Section Begin -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="fs-about">
+                        <div class="fa-logo">
+                            <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore dolore magna aliqua endisse ultrices gravida lorem.</p>
+                        <div class="fa-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="fs-widget">
+                        <h4>Useful links</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Classes</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="fs-widget">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">My account</a></li>
+                            <li><a href="#">Subscribe</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="fs-widget">
+                        <h4>Tips & Guides</h4>
+                        <div class="fw-recent">
+                            <h6><a href="#">Physical fitness may help prevent depression, anxiety</a></h6>
+                            <ul>
+                                <li>3 min read</li>
+                                <li>20 Comment</li>
+                            </ul>
+                        </div>
+                        <div class="fw-recent">
+                            <h6><a href="#">Fitness: The best exercise to lose belly fat and tone up...</a></h6>
+                            <ul>
+                                <li>3 min read</li>
+                                <li>20 Comment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.barfiller.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+    <script src="/static/smart-selects/admin/js/bindfields.js"></script>
+
+
+
+</body>
+
+</html>

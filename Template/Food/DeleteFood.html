@@ -1,0 +1,19 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block ConfrimDeleteFood %}
+
+<div class="d-flex justify-content-center my-5">
+    <form method="post">
+
+        {%csrf_token%}
+
+        <h4 class="title">are you sure to delete {{object.food_name}}?</h4>
+        <button class='btn btn-sm btn-danger'type="submit">DELETE</button>
+        <a href="{%url 'Foods' %}">back to Post</a>
+
+    </form>
+</div>
+
+{% endblock ConfrimDeleteFood %}
