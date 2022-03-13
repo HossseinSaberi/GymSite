@@ -8,8 +8,8 @@ from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
 from .forms import CreateOrEditAthlete
 from Users.models import Athlete
-from Food.models import FoodPlan, FoodPlanItems, Foods
-from Medicine.models import MedicinePlan, MedicinePlanItems
+from Food.models import FoodCategory, FoodPlan, FoodPlanItems, Foods
+from Medicine.models import Medicine, MedicineCategory, MedicinePlan, MedicinePlanItems
 from Exercise.models import Domain, Exercise, ExerciseCategory, ExercisePlan, ExercisePlanItems
 from django.http import Http404
 from django.utils.translation import gettext as _
@@ -55,11 +55,11 @@ class AthleteDetails(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         id = self.kwargs.get(self.pk_url_kwarg)
         context["food_plan"] = FoodPlanItems.objects.filter(
-            food_plan__athlete__id=id).last()
+            food_plan__athlete_id=id)
         context["medicine_plan"] = MedicinePlanItems.objects.filter(
-            medicine_plan__athlete__id=id).last()
+            medicine_plan__athlete_id=id)
         context["exercise_plan"] = ExercisePlanItems.objects.filter(
-            exercise_plan__athlete__id=id).last()
+            exercise_plan__athlete_id=id)
         context["all_day"] = ['SATURDAY' , 'SUNDAY' , 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY']
         return context
 
@@ -68,25 +68,37 @@ class AthleteDetails(LoginRequiredMixin, DetailView):
 class DeleteConfirm(LoginRequiredMixin , DeleteView):
     template_name = 'DeleteConfirm.html'
     athlete_id_kwargs = 'athleteid'
-    food_id_kwargs = 'foodid'
     domain_id_kwargs = 'domainid'
     exercise_category_id_kwargs = 'exercisecategoryid'
     exercise_id_kwargs = 'exerciseid'
     exercise_plan_id_kwargs = 'exerciseplanid'
     exercise_plan_item_id_kwargs = 'exerciseplanitemid'
+    food_id_kwargs = 'foodid'
     food_plan_id_kwargs = 'foodplanid'
     food_plan_item_id_kwargs = 'foodplanitemid'
+    food_category_id_kwargs = 'foodcategoryid'
+    medicine_category_id_kwargs = 'medicinecategoryid'
+    medicine_plan_item_id_kwargs = 'medicineplanitemid'
+    medicine_plan_id_kwargs = 'medicineplanid'
+    medicine_id_kwargs = 'medicineid'
+
 
     def get_object(self, queryset=None):
         athlete_id = self.kwargs.get(self.athlete_id_kwargs)
-        food_id = self.kwargs.get(self.food_id_kwargs)
         domain_id = self.kwargs.get(self.domain_id_kwargs)
         exercise_category_id = self.kwargs.get(self.exercise_category_id_kwargs)
         exercise_id = self.kwargs.get(self.exercise_id_kwargs)
         exercise_plan_id = self.kwargs.get(self.exercise_plan_id_kwargs)
         exercise_plan_item_id = self.kwargs.get(self.exercise_plan_item_id_kwargs)
+        food_id = self.kwargs.get(self.food_id_kwargs)
+        food_category_id = self.kwargs.get(self.food_category_id_kwargs)
         food_plan_id = self.kwargs.get(self.food_plan_id_kwargs)
         food_plan_item_id = self.kwargs.get(self.food_plan_item_id_kwargs)
+        medicine_plan_item_id = self.kwargs.get(self.medicine_plan_item_id_kwargs)
+        medicine_plan_id = self.kwargs.get(self.medicine_plan_id_kwargs)
+        medicine_id = self.kwargs.get(self.medicine_id_kwargs)
+        medicine_category_id = self.kwargs.get(self.medicine_category_id_kwargs)
+
 
         if athlete_id is not None:
             queryset = Athlete.objects.filter(pk = athlete_id)
@@ -112,6 +124,27 @@ class DeleteConfirm(LoginRequiredMixin , DeleteView):
         elif exercise_plan_id is not None:
             queryset = ExercisePlan.objects.filter(pk = exercise_plan_id)
             self.success_url = '/manage_exercise/ExercisePlan/'
+            
+        elif food_category_id is not None:
+            queryset = FoodCategory.objects.filter(pk = food_category_id)
+            self.success_url = '/manage_food/'
+            
+        elif medicine_category_id is not None:
+            queryset = MedicineCategory.objects.filter(pk = medicine_category_id)
+            self.success_url = '/manage_medicine/'
+
+        elif medicine_plan_item_id is not None:
+            queryset = MedicinePlanItems.objects.filter(pk = medicine_plan_item_id)
+            id = queryset.last().medicine_plan.id
+            self.success_url = reverse("CreateMedicinePlanItems", kwargs={'pk': id})
+
+        elif medicine_plan_id is not None:
+            queryset = MedicinePlan.objects.filter(pk = medicine_plan_id)
+            self.success_url = '/manage_medicine/MedicinePlanList/'
+
+        elif medicine_id is not None:
+            queryset = Medicine.objects.filter(pk = medicine_id)
+            self.success_url = '/manage_medicine/'
 
         elif exercise_plan_item_id is not None:
             queryset = ExercisePlanItems.objects.filter(pk = exercise_plan_item_id)
@@ -138,10 +171,3 @@ class DeleteConfirm(LoginRequiredMixin , DeleteView):
                           {'verbose_name': queryset.model._meta.verbose_name})
         return obj
 
-
-
-"""TODO
-
-template of athlete details 
-use calender id template for showing program of each plan
-"""

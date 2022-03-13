@@ -42,7 +42,7 @@ class DeleteFood(LoginRequiredMixin, DeleteView):
 
 class AddFoodPlan(LoginRequiredMixin, CreateView):
     model = FoodPlan
-    success_url = '/manage_food/AddFoodPlan/'
+    success_url = '/manage_food/'
     template_name = 'Plans/FoodPlans/AddFoodPlan.html'
     form_class = CreateOrEditFoodPlan
 
@@ -56,13 +56,13 @@ class FoodPlanList(LoginRequiredMixin, ListView):
 class DeleteFoodPlan(LoginRequiredMixin, DeleteView):
     model = FoodPlan
     template_name = 'Plans/FoodPlans/DeleteFoodPlan.html'
-    success_url = '/manage_food/FoodPlanList'
+    success_url = '/manage_food/FoodPlanList/'
 
 
 class EditFoodPlan(LoginRequiredMixin, UpdateView):
     model = FoodPlan
     template_name = 'Plans/FoodPlans/EditFoodPlan.html'
-    success_url = '/manage_food/FoodPlanList'
+    success_url = '/manage_food/FoodPlanList/'
     form_class = CreateOrEditFoodPlan
 
 
@@ -100,7 +100,7 @@ class CreateFoodCategory(LoginRequiredMixin , CreateView):
     model = FoodCategory
     template_name = 'Food/FoodCategory/CreateFoodCategory.html'
     form_class = CreateOrEditFoodCategory
-    success_url = '/manage_food/CreateFoodCategory/'
+    success_url = '/manage_food/'
 
 
 

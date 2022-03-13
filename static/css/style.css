@@ -58,6 +58,7 @@ h1 {
 
 h2 {
 	font-size: 36px;
+	color: white;
 }
 
 h3 {
@@ -108,10 +109,29 @@ ol {
 	padding: 0;
 	margin: 0;
 }
-
 /*---------------------
   Helper CSS
 -----------------------*/
+.delete-pad{
+	padding: 200px 0 50px 0;
+}
+.span-detail{
+	display: inline-flex;
+	justify-content: end;
+}
+.detail-th{
+	font-size: 14px;
+	color: #ffffff;
+	background: #f36100;
+	padding: 15px 0;
+	font-weight: 400;
+}
+.detail-table td{
+	max-width: 100px;
+	max-height: 100px;
+	height: 50%;
+	width: 50%;
+}
 #food-list{
 	width: 90px;
 	height: 90px;
@@ -123,7 +143,7 @@ ol {
 	margin-bottom: 45px;
 	text-align: center;
 }
-#choosebox{
+.choosebox{
 	background-color: #fff0;
 	height: 50px;
 }
@@ -138,6 +158,12 @@ ol {
 	background: #f36100;
 	display: inherit;
 	text-align: center;
+}
+#x-icon{
+	color: red;
+}
+#tik-icon{
+	color: greenyellow;
 }
 .tab {
 	overflow: hidden;
@@ -1690,7 +1716,6 @@ ol {
 	font-size: 14px;
 	color: #ffffff;
 	background: #f36100;
-	border-right: 1px solid #363636;
 	padding: 15px 0;
 	font-weight: 400;
 }

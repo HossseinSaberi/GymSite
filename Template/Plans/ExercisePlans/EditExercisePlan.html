@@ -1,4 +1,4 @@
-{% extends 'MainPage.html' %}
+{% extends 'Exercise/manage_exercise.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
@@ -16,16 +16,16 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                {% render_field form.athlete type="text" class="form-control choosebox" placeholder="For"%}
-                            </div>
-                            {% comment %} <div class="form-group col-md-12 pl-md-1">
-                                {% render_field form.start_date type="Date" class="form-control" placeholder="Start Date"%}
-                            </div> {% endcomment %}
-                            <div class="form-group col-md-12">
-                                {% render_field form.end_date type="Date" class="form-control choosebox" placeholder="End Date"%}
+                                <label for="for">For :</label>
+                                {% render_field form.athlete type="text" class="form-control choosebox" id="for"%}
                             </div>
                             <div class="form-group col-md-12">
-                                    {% render_field form.status type="text" class="form-control choosebox" placeholder="Status"%}
+                                <label for="end_date">End Date :</label>
+                                {% render_field form.end_date type="Date" class="form-control choosebox" id="end_date"%}
+                            </div>
+                            <div class="form-group col-md-12">
+                                    <label for="status">Status :</label>
+                                    {% render_field form.status type="text" class="form-control choosebox" id="status"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-12">

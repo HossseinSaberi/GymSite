@@ -1,0 +1,18 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block manage_medicine %}
+<section class="bmi-calculator-section border">
+    {% block AddMedicine %}{% endblock AddMedicine %}
+    {% block MedicineList %}{% endblock MedicineList %}
+    {% block EditMedicineCategory %}{% endblock EditMedicineCategory %}
+    {% block EditMedicine %}{% endblock EditMedicine %}
+    {% block AddMedicinePlan %}{% endblock AddMedicinePlan %}
+    {% block MedicinePlanList %}{% endblock MedicinePlanList %}
+    {% block EditMedicinePlan %}{% endblock EditMedicinePlan %}
+    {% block MedicinePlansItemList %}{% endblock MedicinePlansItemList %}
+    {% block EditMedicinePlansItem %}{% endblock EditMedicinePlansItem %}
+
+</section>
+{% endblock manage_medicine %}

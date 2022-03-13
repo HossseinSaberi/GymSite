@@ -15,15 +15,19 @@ from Medicine.models import MedicinePlan, MedicinePlanItems, Medicine , Medicine
 class AddMedicine(LoginRequiredMixin, CreateView):
     form_class = CreateOrEditMedicine
     model = Medicine
-    success_url = '/manage_medicine/AddMedicine/'
+    success_url = '/manage_medicine/'
     template_name = 'Medicine/CreateNewMedicine.html'
 
 
 class MedicineList(LoginRequiredMixin, ListView):
     model = Medicine
     template_name = 'Medicine/MedicineList.html'
-    context_object_name = 'AllFood'
+    context_object_name = 'AllMedicine'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["AllCategory"] = MedicineCategory.objects.all()
+        return context
 
 class EditMedicine(LoginRequiredMixin, UpdateView):
     model = Medicine
@@ -40,33 +44,26 @@ class DeleteMedicine(LoginRequiredMixin, DeleteView):
 
 class AddMedicinePlan(LoginRequiredMixin, CreateView):
     model = MedicinePlan
-    success_url = '/manage_food/AddFoodPlan/'
-    template_name = 'Plans/FoodPlans/AddFoodPlan.html'
+    success_url = '/manage_medicine/MedicinePlanList/'
+    template_name = 'Plans/MedicinePlans/AddMedicinePlan.html'
     form_class = CreateOrEditMedicinePlan
 
 
 class MedicinePlanList(LoginRequiredMixin, ListView):
     model = MedicinePlan
-    template_name = 'Plans/FoodPlans/FoodPlanList.html'
-    context_object_name = 'AllFoodPlan'
-
-
-class DeleteMedicinePlan(LoginRequiredMixin, DeleteView):
-    model = MedicinePlan
-    template_name = 'Plans/FoodPlans/DeleteFoodPlan.html'
-    success_url = '/manage_food/FoodPlanList'
-
+    template_name = 'Plans/MedicinePlans/MedicinePlanList.html'
+    context_object_name = 'AllMedicinePlan'
 
 class EditMedicinePlan(LoginRequiredMixin, UpdateView):
     model = MedicinePlan
-    template_name = 'Plans/FoodPlans/EditFoodPlan.html'
-    success_url = '/manage_food/FoodPlanList'
+    template_name = 'Plans/MedicinePlans/EditMedicinePlan.html'
+    success_url = '/manage_medicine/MedicinePlanList/'
     form_class = CreateOrEditMedicinePlan
 
 
 class CreateMedicinePlanItems(LoginRequiredMixin , CreateView):
     model = MedicinePlanItems
-    template_name = 'Plans/FoodPlans/FoodPlanItems/CreateFoodPlanItem.html'
+    template_name = 'Plans/MedicinePlans/MedicinePlanItems/CreateMedicinePlanItems.html'
     form_class = CreateOrEditMedicinePlanItem
 
     def get_context_data(self, **kwargs):
@@ -83,7 +80,7 @@ class CreateMedicinePlanItems(LoginRequiredMixin , CreateView):
 
 class EditMedicinePlanItems(LoginRequiredMixin , UpdateView):
     model = MedicinePlanItems
-    template_name = 'Plans/FoodPlans/FoodPlanItems/EditFoodPlanItem.html'
+    template_name = 'Plans/MedicinePlans/MedicinePlanItems/EditMedicinePlanItems.html'
     form_class = CreateOrEditMedicinePlanItem
     pk_url_kwarg = 'pk'
     id_url_kwarg = 'id'
@@ -101,8 +98,8 @@ class CreateMedicineCategory(LoginRequiredMixin , CreateView):
 
 
 
-class EditExerciseCategory(LoginRequiredMixin , UpdateView):
+class EditMedicineCategory(LoginRequiredMixin , UpdateView):
     model = MedicineCategory
-    template_name = 'Exercise/ExerciseCategory/EditMedicineCategory.html'
+    template_name = 'Medicine/MedicineCategory/EditMedicineCategory.html'
     form_class = CreateOrEditMedicineCategory
     success_url = '/manage_medicine/'

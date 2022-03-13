@@ -7,7 +7,7 @@ from smart_selects.db_fields import ChainedForeignKey
 class FoodCategory(models.Model):
     title = models.CharField(verbose_name="Category Title", max_length=50)
     image = models.ImageField(
-        "Category Image", upload_to='Food/Category/', null=True, blank=True)
+        "Category Image", upload_to='Food/Category/', null=True, blank=True , default='static/DF.jpg')
     parent = models.ForeignKey(
         "self", verbose_name='Parent',  on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -18,7 +18,7 @@ class FoodCategory(models.Model):
 class Foods(models.Model):
     food_name = models.CharField(verbose_name="Food Name", max_length=50)
     food_image = models.ImageField(
-        verbose_name="Food Image", upload_to='Food/', null=True, blank=True)
+        verbose_name="Food Image", upload_to='Food/', null=True, blank=True , default='static/DF.jpg')
     food_category = models.ForeignKey(
         FoodCategory, verbose_name="Food Category", on_delete=models.CASCADE)
 

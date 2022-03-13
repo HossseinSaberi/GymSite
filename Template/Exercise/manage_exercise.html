@@ -1,0 +1,20 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block manage_exercise %}
+<div class="bmi-calculator-section border">
+{% block ExerciseList %}{% endblock ExerciseList %}
+{% block AddExercise %}{% endblock AddExercise %}
+{% block EditExercise %}{% endblock EditExercise %}
+{% block AddExerciseCategory %}{% endblock AddExerciseCategory %}
+{% block EditExerciseCategory %}{% endblock EditExerciseCategory %}
+{% block AddDomain %}{% endblock AddDomain %}
+{% block EditDomain %}{% endblock EditDomain %}
+{% block AddExercisePlan %}{% endblock AddExercisePlan %}
+{% block EditExercisePlan %}{% endblock EditExercisePlan %}
+{% block ExercisePlansItemList %}{% endblock ExercisePlansItemList %}
+{% block EditExercisePlansItem %}{% endblock EditExercisePlansItem %}
+{% block ExercisePlansList %}{% endblock ExercisePlansList %}
+</div>
+{% endblock manage_exercise %}

@@ -1,0 +1,18 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block manage_food %}
+<section class="bmi-calculator-section border">
+    {% block FoodPlansList %}{% endblock FoodPlansList %}
+    {% block AddFoodPlan %}{% endblock AddFoodPlan %}
+    {% block EditFoodPlan %}{% endblock EditFoodPlan %}
+    {% block FoodPlansItemList %}{% endblock FoodPlansItemList %}
+    {% block EditFoodPlansItem %}{% endblock EditFoodPlansItem %}
+    {% block AddFoodCategory %}{% endblock AddFoodCategory %}
+    {% block EditFoodCategory %}{% endblock EditFoodCategory %}
+    {% block AddFood %}{% endblock AddFood %}
+    {% block EditFood %}{% endblock EditFood %}
+    {% block FoodList %}{% endblock FoodList %}
+</section>
+{% endblock manage_food %}

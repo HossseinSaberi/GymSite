@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('manage_food/', include('Food.urls')),
     path('', include('Users.urls')),
-    # path('manage_medicine', include('Medicine.urls')),
+    path('manage_medicine/', include('Medicine.urls')),
     path('manage_exercise/', include('Exercise.urls')),       
     re_path(r'^chaining/', include('smart_selects.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

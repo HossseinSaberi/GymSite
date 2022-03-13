@@ -1,4 +1,4 @@
-{% extends 'MainPage.html' %}
+{% extends 'Food/manage_food.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
@@ -29,11 +29,8 @@
                                 {% render_field form.parent type="text" class="form-control choosebox" placeholder="Parent"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
-                                <div class="col-md-6">
-                                <a href="{% url 'FoodList' %}" onclick="submit_form()" id="submit-a">Save</a>
-                                </div>
-                                <div class="col-md-6">
-                                <button type="submit" >Save & Add Another</button>
+                                <div class="col-md-12">
+                                <button type="submit" >Save</button>
                                 </div>
                             </div>
                     </div>
@@ -46,7 +43,8 @@
 
 <script>
     function submit_form(){
-        document.getElementById('FoodCategory_input_form').submit();
+        let form = document.getElementById('FoodCategory_input_form');
+        form.submit();
     }
 </script>
 {% endblock EditFoodCategory %}

@@ -89,12 +89,13 @@
                             <li><a href="./about-us.html">About Us</a></li>
                             <li><a href="{% url 'FoodPlanList' %}">Food Plans</a></li>
                             <li><a href="{% url 'ExercisePlanList' %}">Exercise Plans</a></li>
+                            <li><a href="{% url 'MedicinePlanList' %}">Medicine Plans</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="{% url 'AthleteList' %}">Athlete</a></li>
                                     <li><a href="{% url 'FoodList'%}">Food</a></li>
-                                    <li><a href="{% url 'FoodList'%}">Exercise</a></li>
-                                    <li><a href="./team.html">Medicine</a></li>
+                                    <li><a href="{% url 'ExerciseList'%}">Exercise</a></li>
+                                    <li><a href="{% url 'MedicineList'%}">Medicine</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -128,191 +129,31 @@
 
     <!-- End Hero Section -->
 
-
-    <!-- Add Food Section -->
-    <section class="bmi-calculator-section">
-        {% block AddFood %}{% endblock AddFood %}
-    </section>
-    <!-- End Add Food -->
-
-
-    <!-- Edit Food Section -->
-    <section class="bmi-calculator-section">
-        {% block EditFood %}{% endblock EditFood %}
-    </section>
-    <!-- End Edit Food -->
-    
-    
-    <!-- Food List Section -->
-    <div class="bmi-calculator-section border">
-    {% block FoodList %}{% endblock FoodList %}
-    </div>
-    <!-- End Food List-->
-
-
     <!-- Confrim Delete Food Section -->
     <section class="bmi-calculator-section">
-        {% block ConfrimDeleteFood %}{% endblock ConfrimDeleteFood %}
+        {% block DeleteConfrimModal %}{% endblock DeleteConfrimModal %}
     </section>
     <!-- End Confrim Delete Food-->
 
 
-    <!-- Athlete List Section -->
-    <section class="bmi-calculator-section border">
-        {% block AthleteList %}{% endblock AthleteList %}
-    </section>
-    <!-- Athlete List Section-->
-
-
-    <!-- Athlete Details Section -->
-    <section class="bmi-calculator-section border">
-        {% block AthleteDetail %}{% endblock AthleteDetail %}
-    </section>
-    <!-- Athlete Details Section-->
-
+    <!-- Athlete Section -->
+        {% block manage_athlete %}{% endblock manage_athlete %}
+    <!-- End Athlete Section-->
     
-    <!-- Food Plans List Section-->
-    <section class="bmi-calculator-section border">
-    {% block FoodPlansList %}{% endblock FoodPlansList %}
-    </section>
-    <!-- End Food Plans List Section-->
+    <!-- Exercise Section -->
+        {% block manage_exercise %}{% endblock manage_exercise %}
+    <!-- End Exercise Section-->
     
     
-
-    
-    <!-- Exercise List Section-->
-    <section class="bmi-calculator-section border">
-    {% block ExerciseList %}{% endblock ExerciseList %}
-    </section>
-    <!-- End Exercise List Section-->
-
-
-    <!-- Add Exercise Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddExercise %}{% endblock AddExercise %}
-    </section>
-    <!-- End Add Exercise Section-->
+    <!-- Food Section -->
+        {% block manage_food %}{% endblock manage_food %}
+    <!-- End Food Section-->
     
     
-    <!-- ExercisePlan List Section-->
-    <section class="bmi-calculator-section border">
-        {% block ExercisePlansList %}{% endblock ExercisePlansList %}
-    </section>
-    <!-- End ExercisePlan List Section-->
+    <!-- Medicine Section -->
+        {% block manage_medicine %}{% endblock manage_medicine %}
+    <!-- End Medicine Section-->
     
-    
-    <!-- Add ExercisePlan Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddExercisePlan %}{% endblock AddExercisePlan %}
-    </section>
-    <!-- End Add ExercisePlan Section-->
-    
-    
-    <!-- Edit ExercisePlan Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditExercisePlan %}{% endblock EditExercisePlan %}
-    </section>
-    <!-- End Edit ExercisePlan Section-->
-    
-    
-    <!-- ExercisePlanItem Section-->
-    <section class="bmi-calculator-section border">
-        {% block ExercisePlansItemList %}{% endblock ExercisePlansItemList %}
-    </section>
-    <!-- End ExercisePlanItem Section-->
-    
-    
-    <!-- Edit Exercise Plans Item Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditExercisePlansItem %}{% endblock EditExercisePlansItem %}
-    </section>
-    <!-- End Edit Exercise Plans Item Section-->
-    
-    
-    <!-- Add Domain Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddDomain %}{% endblock AddDomain %}
-    </section>
-    <!-- End Add Domain Section-->
-    
-    <!-- Add Exercise Category Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddExerciseCategory %}{% endblock AddExerciseCategory %}
-    </section>
-    <!-- End Add Exercise Category Section-->
-    
-    
-    <!-- Add Food Plan Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddFoodPlan %}{% endblock AddFoodPlan %}
-    </section>
-    <!-- End Add Food Plan Section-->
-    
-    
-    <!-- Edit Food Plan Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditFoodPlan %}{% endblock EditFoodPlan %}
-    </section>
-    <!-- End Edit Food Plan Section-->
-    
-    
-    <!-- Edit Food Plan Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditExerciseCategory %}{% endblock EditExerciseCategory %}
-    </section>
-    <!-- End Edit Food Plan Section-->
-    
-    
-    <!-- Add Food Plan Items Section-->
-    <section class="bmi-calculator-section border">
-        {% block FoodPlansItemList %}{% endblock FoodPlansItemList %}
-    </section>
-    <!-- End Add Food Plan Items Section-->
-    
-    
-    <!-- Edit Food Plan Items Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditFoodPlansItem %}{% endblock EditFoodPlansItem %}
-    </section>
-    <!-- End Edit Food Plan Items Section-->
-    
-    
-    <!-- Add Athlete Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddAthlete %}{% endblock AddAthlete %}
-    </section>
-    <!-- End Add Athlete Section-->
-    
-    
-    <!-- Edit Athlete Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditAthlete %}{% endblock EditAthlete %}
-    </section>
-    <!-- End Edit Athlete Section-->
-    
-    
-    <!-- Edit Athlete Section-->
-    <section class="bmi-calculator-section border">
-        {% block DeleteConfrimModal %}{% endblock DeleteConfrimModal %}
-    </section>
-    <!-- End Edit Athlete Section-->
-    
-    <!-- Edit Athlete Section-->
-    <section class="bmi-calculator-section border">
-        {% block AddFoodCategory %}{% endblock AddFoodCategory %}
-    </section>
-    <!-- End Edit Athlete Section-->
-    
-    <!-- Edit Athlete Section-->
-    <section class="bmi-calculator-section border">
-        {% block EditFoodCategory %}{% endblock EditFoodCategory %}
-    </section>
-    <!-- End Edit Athlete Section-->
-
-
-
-    
-
     <!-- Footer Section Begin -->
     <section class="footer-section">
         <div class="container">

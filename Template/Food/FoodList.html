@@ -1,4 +1,4 @@
-{% extends 'MainPage.html' %}
+{% extends 'Food/manage_food.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
@@ -99,7 +99,7 @@
                 </td>
                 <td>
                     <div >
-                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirm/" id="manage-icon">
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmFoodCat/" id="manage-icon">
                           <i class='fa fa-trash'></i>
                         </a>
                         <a class='d-inline-block border-2 mx-3' href="/manage_food/{{object.id}}/EditFoodCategory/" id="manage-icon">

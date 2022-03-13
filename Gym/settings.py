@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'Exercise',
     'widget_tweaks',
     'smart_selects',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [

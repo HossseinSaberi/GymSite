@@ -18,7 +18,7 @@ class Athlete(AbstractUser): # if login lazem shod az abstrctuser ers bebar
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField('email address', unique=True)
     user_image = models.ImageField(
-        'Profile Image',  upload_to=None, null=True, blank=True , default='static/nothing.jpg')
+        'Profile Image',  upload_to=None, null=True, blank=True , default='static/DU.jpg')
     address = models.TextField('Address',  null=True, blank=True)
     age = models.IntegerField('Age',  null=True, blank=True)
     mobile_number = models.CharField(

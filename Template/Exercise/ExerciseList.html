@@ -1,6 +1,7 @@
-{% extends 'MainPage.html' %}
+{% extends 'Exercise/manage_exercise.html' %}
 {% load widget_tweaks %}
 {% load static %}
+{% load django_tables2 %}
 
 {% block ExerciseList %}
 
@@ -68,8 +69,9 @@
 
             {% endfor %}
         </tbody>
-      </table>
-    </div>
+    </table>
+    {% comment %} {% render_table AllExercise %} {% endcomment %}
+  </div>
   </div>
   <div class="tabcontent" id="Category">
     <div class="table-responsive class-timetable details-timetable">

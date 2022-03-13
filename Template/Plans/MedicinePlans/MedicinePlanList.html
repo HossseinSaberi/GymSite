@@ -1,0 +1,63 @@
+{% extends 'Medicine/manage_medicine.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block MedicinePlanList %}
+
+<div class="d-flex justify-content-center mt-5 spad">
+    <a class='btn btn-outline-success btn-lg' href="{% url 'AddMedicinePlan'%}">New Medicine Plan</a>
+  </div>
+<hr>
+<div class="card-body">
+  <div class="table-responsive class-timetable details-timetable">
+    <table class="table table-bordered table-hover" >
+        <thead class=" text-primary">
+          <tr>
+            <th>
+                For
+              </th>
+            <th>
+              Start Date
+            </th>
+            <th>
+              End Date
+            </th>
+            <th>
+              MANAGE
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for object in AllMedicinePlan %}
+            
+            <tr>
+                <td>
+                    {{object.athlete}}
+                </td>
+                <td>
+                    {{object.start_date}}
+                </td>
+                <td>
+                    {{object.end_date}}
+                </td>
+                <td>
+                    <div >
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicinePlan/" id="manage-icon">
+                          <i class='fa fa-trash'></i>
+                        </a>
+                        <a class='d-inline-block border-2 mx-3' href="/manage_medicine/{{object.id}}/EditMedicinePlan/" id="manage-icon">
+                          <i class='fa fa-edit'></i>
+                        </a>
+                      </div>
+                </td>
+              </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+{% endblock MedicinePlanList %}

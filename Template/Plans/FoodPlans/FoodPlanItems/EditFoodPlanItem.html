@@ -1,4 +1,4 @@
-{% extends 'MainPage.html' %}
+{% extends 'Food/manage_food.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
@@ -14,23 +14,29 @@
                     <form method="POST" enctype='multipart/form-data' id="exercise_plan_item_input_form">
                         {%csrf_token%}
                         <div class="form-group col-md-12">
-                        {% render_field form.food_plan type="text" class="form-control choosebox" placeholder="Exercise Plan"%}
+                            <label for="food_plan">Food Plan :</label>
+                            {% render_field form.food_plan type="text" class="form-control choosebox" id="food_plan"%}
                         </div>
-                        <div class="form-group col-md-12">
-                            {% render_field form.food_category type="text" class="form-control choosebox" placeholder="Exercise Category"%}
-                        </div>
-                        <div class="form-group col-md-12">
-                            {% render_field form.foods type="text" class="form-control choosebox" placeholder="Exercise"%}
-                        </div>
-                        <div class="form-group col-md-12">
-                            {% render_field form.count type="text" class="form-control choosebox" placeholder="Domain"%}
-                        </div>
-                        <div class="form-group col-md-12">
-                            {% render_field form.days type="text" class="form-control choosebox" placeholder="Day"%}
-                        </div>
-                        <div class="form-group col-md-12">
-                                {% render_field form.food_details type="text" class="form-control choosebox" placeholder="Details"%}
-                        </div>
+                            <div class="form-group col-md-12">
+                                <label for="food_category">Food Category :</label>
+                                {% render_field form.food_category type="text" class="form-control choosebox" id="food_category"%}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="food">Food :</label>
+                                {% render_field form.foods type="text" class="form-control choosebox" id="food"%}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="count">Count :</label>
+                                {% render_field form.count type="text" class="form-control choosebox" id="count"%}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="day">Day :</label>
+                                {% render_field form.days type="text" class="form-control choosebox" id="day"%}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="detail">Details :</label>
+                                    {% render_field form.food_details type="text" class="form-control choosebox" id="detail"%}
+                            </div>
                         <div class="d-flex justify-content-center mb-4">
                             <div class="col-md-12">
                             <button type="submit" >Save</button>

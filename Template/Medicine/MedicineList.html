@@ -1,0 +1,138 @@
+{% extends 'Medicine/manage_medicine.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block MedicineList %}
+
+<div class="d-flex justify-content-center mt-5 spad">
+    <a class='btn btn-outline-success btn-lg m-2' href="{% url 'AddMedicine'%}">New Medicine</a>
+    <a class='btn btn-outline-warning btn-lg m-2' href="{% url 'CreateMedicineCategory'%}">New Category</a>
+  </div>
+<hr>
+<div class="tab">
+  <button class="tablinks" onclick="callTable(event, 'Medicine')" id="defaultOpen">Medicine</button>
+  <button class="tablinks" onclick="callTable(event, 'Category')">Category</button>
+</div>
+<div class="card-body">
+  <div class="tabcontent" id="Medicine"> 
+  <div class="table-responsive class-timetable details-timetable">
+    <table class="table table-bordered table-hover" >
+        <thead class=" text-primary">
+          <tr>
+            <th>
+              NAME
+            </th>
+            <th>
+              CATEGORY
+            </th>
+            <th>
+                IMAGE
+            </th>
+            <th>
+                MANAGE
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for object in AllMedicine %}
+            
+            <tr>
+                <td>
+                    {{object.medicine_name}}
+                </td>
+                <td>
+                    {{object.medicine_category}}
+                </td>
+                <td>
+                    <img src="{{object.medicine_image.url}}" alt="{{object.medicine_image}}" id="food-list">
+                </td>
+                <td>
+                    <div >
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicine/" id="manage-icon">
+                          <i class='fa fa-trash'></i>
+                        </a>
+                        <a class='d-inline-block border-2 mx-3' href="/manage_medicine/{{object.id}}/EditMedicine/" id="manage-icon">
+                          <i class='fa fa-edit'></i>
+                        </a>
+                      </div>
+                </td>
+              </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+
+
+  <div class="tabcontent" id="Category">
+    <div class="table-responsive class-timetable details-timetable">
+      <table class="table table-bordered table-hover" >
+        <thead class=" text-primary">
+          <tr>
+            <th>
+              TITLE
+            </th>
+            <th>
+              IMAGE
+            </th>
+            <th>
+              PARENT
+            </th>
+            <th>
+                MANAGE
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for object in AllCategory %}
+            
+            <tr>
+                <td>
+                    {{object.title}}
+                </td>
+                <td>
+                  <img src="{{object.image.url}}" alt="{{object.image}}" id="food-list">
+                </td>
+                <td>
+                    {{object.parent}}
+                </td>
+                <td>
+                    <div >
+                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicineCat/" id="manage-icon">
+                          <i class='fa fa-trash'></i>
+                        </a>
+                        <a class='d-inline-block border-2 mx-3' href="/manage_medicine/{{object.id}}/EditMedicineCategory/" id="manage-icon">
+                          <i class='fa fa-edit'></i>
+                        </a>
+                      </div>
+                </td>
+              </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  function callTable(evt , tableName){
+    var i , tabcontent , tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i=0 ; i<tabcontent.length ; i++){
+      tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName("tablinks");
+    for(i=0 ; i<tablinks.length ; i++){
+      tablinks[i].className = tablinks[i].className.replace(" active" , "");
+    }
+
+    document.getElementById(tableName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+</script>
+{% endblock MedicineList %}

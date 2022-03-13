@@ -7,18 +7,25 @@ class CreateOrEditMedicine (forms.ModelForm):
         model = Medicine
         fields = '__all__'
         widgets = {
-            'food_image' : forms.FileInput(),
+            'medicine_image' : forms.FileInput(),
         }
 
     def __init__(self,*args, **kwargs):
         super(CreateOrEditMedicine , self).__init__(*args, **kwargs)
-        self.fields['food_image'].widget.attrs = {'id' : 'selectedFile'}
+        self.fields['medicine_image'].widget.attrs = {'id' : 'selectedFile'}
 
 
 class CreateOrEditMedicineCategory(forms.ModelForm):
     class Meta:
         model = MedicineCategory
         fields = '__all__'
+        widgets = {
+            'image' : forms.FileInput(),
+        }
+
+    def __init__(self,*args, **kwargs):
+        super(CreateOrEditMedicineCategory , self).__init__(*args, **kwargs)
+        self.fields['image'].widget.attrs = {'id' : 'selectedFile'}
 
         
 class CreateOrEditMedicinePlan(forms.ModelForm):

@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView , UpdateView , DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CreateOrEditDomain, CreateOrEditExercise , CreateOrEditExercisePlan , CreateOrEditExercisePlanItem , CreateOrEditExerciseCategory
 from django.urls import reverse
+from django_tables2 import SingleTableView
+from .tables import ExerciseTable
 
 
 # Create your views here.
@@ -15,6 +17,19 @@ from django.urls import reverse
 class ExerciseList(LoginRequiredMixin , ListView):
     model = Exercise
     template_name = 'Exercise/ExerciseList.html'
+    context_object_name = 'AllExercise'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["AllDomain"] = Domain.objects.all()
+        context["AllCategory"] = ExerciseCategory.objects.all()
+        return context
+
+
+class ExerciseList(SingleTableView):
+    model = Exercise
+    template_name = 'Exercise/ExerciseList.html'
+    table_class = ExerciseTable
     context_object_name = 'AllExercise'
 
     def get_context_data(self, **kwargs):

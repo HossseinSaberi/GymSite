@@ -1,0 +1,12 @@
+{% extends 'MainPage.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block manage_athlete %}
+<section class="bmi-calculator-section border">
+    {% block AthleteDetail %}{% endblock AthleteDetail %}
+    {% block AthleteList %}{% endblock AthleteList %}
+    {% block AddAthlete %}{% endblock AddAthlete %}
+    {% block EditAthlete %}{% endblock EditAthlete %}
+</section>
+{% endblock manage_athlete %}
