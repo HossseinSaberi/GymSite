@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-from Food.forms import CreateOrEditFood, CreateOrEditFoodPlan , CreateOrEditFoodPlanItem , CreateOrEditFoodCategory
+from Food.forms import CreateOrEditFood, CreateOrEditFoodPlan , CreateFoodPlanItem , CreateOrEditFoodCategory , EditFoodPlanItem
 from Food.models import FoodPlan, FoodPlanItems, Foods , FoodCategory
 
 # Create your views here.
@@ -12,7 +12,7 @@ from Food.models import FoodPlan, FoodPlanItems, Foods , FoodCategory
 class AddFood(LoginRequiredMixin, CreateView):
     form_class = CreateOrEditFood
     model = Foods
-    success_url = '/manage_food/AddFood/'
+    success_url = '/manage_food/'
     template_name = 'Food/CreateNewFood.html'
 
 
@@ -33,16 +33,9 @@ class EditFood(LoginRequiredMixin, UpdateView):
     template_name = 'Food/EditFood.html'
     form_class = CreateOrEditFood
 
-
-class DeleteFood(LoginRequiredMixin, DeleteView):
-    model = Foods
-    success_url = '/manage_food/'
-    template_name = 'Food/DeleteFood.html'
-
-
 class AddFoodPlan(LoginRequiredMixin, CreateView):
     model = FoodPlan
-    success_url = '/manage_food/'
+    success_url = '/manage_food/FoodPlanList/'
     template_name = 'Plans/FoodPlans/AddFoodPlan.html'
     form_class = CreateOrEditFoodPlan
 
@@ -51,13 +44,6 @@ class FoodPlanList(LoginRequiredMixin, ListView):
     model = FoodPlan
     template_name = 'Plans/FoodPlans/FoodPlanList.html'
     context_object_name = 'AllFoodPlan'
-
-
-class DeleteFoodPlan(LoginRequiredMixin, DeleteView):
-    model = FoodPlan
-    template_name = 'Plans/FoodPlans/DeleteFoodPlan.html'
-    success_url = '/manage_food/FoodPlanList/'
-
 
 class EditFoodPlan(LoginRequiredMixin, UpdateView):
     model = FoodPlan
@@ -69,7 +55,7 @@ class EditFoodPlan(LoginRequiredMixin, UpdateView):
 class CreateFoodPlanItems(LoginRequiredMixin , CreateView):
     model = FoodPlanItems
     template_name = 'Plans/FoodPlans/FoodPlanItems/CreateFoodPlanItem.html'
-    form_class = CreateOrEditFoodPlanItem
+    form_class = CreateFoodPlanItem
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,11 +68,17 @@ class CreateFoodPlanItems(LoginRequiredMixin , CreateView):
         id = self.kwargs.get(self.pk_url_kwarg)
         return reverse("CreateFoodPlanItems", kwargs={'pk': id})
 
+    
+    def get_form_kwargs(self, *args, **kwargs):
+        kwargs = super().get_form_kwargs(*args, **kwargs)
+        kwargs['foodplan'] = self.kwargs.get(self.pk_url_kwarg)
+        return kwargs
+
 
 class EditFoodPlanItems(LoginRequiredMixin , UpdateView):
     model = FoodPlanItems
     template_name = 'Plans/FoodPlans/FoodPlanItems/EditFoodPlanItem.html'
-    form_class = CreateOrEditFoodPlanItem
+    form_class = EditFoodPlanItem
     pk_url_kwarg = 'pk'
     id_url_kwarg = 'id'
 

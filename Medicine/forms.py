@@ -34,7 +34,17 @@ class CreateOrEditMedicinePlan(forms.ModelForm):
         exclude = ['start_date' , 'medicine']
 
 
-class CreateOrEditMedicinePlanItem(forms.ModelForm):
+class CreateMedicinePlanItem(forms.ModelForm):
     class Meta:
         model = MedicinePlanItems
         fields = '__all__'
+
+    def __init__(self, medicineplan ,  *args, **kwargs):
+        super(CreateMedicinePlanItem, self).__init__(*args, **kwargs)
+        self.fields['medicine_plan'] = forms.ModelChoiceField(queryset= MedicinePlan.objects.filter(athlete__id=medicineplan) , empty_label=None)
+
+
+class EditMedicinePlanItem(forms.ModelForm):
+    class Meta:
+        model = MedicinePlanItems
+        exclude = ['medicine_plan' , ]

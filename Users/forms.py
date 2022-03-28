@@ -11,3 +11,9 @@ class CreateOrEditAthlete(forms.ModelForm):
     def __init__(self,*args, **kwargs):
         super(CreateOrEditAthlete , self).__init__(*args, **kwargs)
         self.fields['user_image'].widget.attrs = {'id' : 'selectedFile'}
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=50, label='UserName')
+    password = forms.CharField(widget=forms.PasswordInput, label='Password')
+

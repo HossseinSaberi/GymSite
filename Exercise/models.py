@@ -15,7 +15,7 @@ class Domain(models.Model):
 class ExerciseCategory(models.Model):
     title = models.CharField(verbose_name="Category Title", max_length=50)
     image = models.ImageField(
-        "Category Image", upload_to='Exercise/Category/', null=True, blank=True , default='static/DE.png')
+        "Category Image", upload_to='Exercise/Category/' , default='DE.png')
     parent = models.ForeignKey(
         "self", verbose_name='Parent',  on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -27,7 +27,7 @@ class Exercise(models.Model):
     exercise_name = models.CharField("Exercise Name", max_length=50)
     exercise_details = models.TextField("Exercise Details")
     exercise_image = models.ImageField(
-        "Exercise Image", upload_to='Exercise/', null=True, blank=True , default='static/DE.png')
+        "Exercise Image", upload_to='Exercise/', default='DE.png')
     exercise_category = models.ForeignKey(
         ExerciseCategory, verbose_name="Exercise Category", on_delete=models.CASCADE , null=True , blank=True)
 

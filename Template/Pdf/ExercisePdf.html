@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pdf</title>
+    <style>
+        @page {
+        size: letter landscape;
+        border : 1px solid black;
+        padding : 0.4cm;
+        margin : 0.5cm;
+        }
+        table{
+            border: 1px , solid , black;
+            text-align: center;
+            vertical-align: inherit;
+        }
+        .detail-th{
+            font-size: 14px;
+            color: #ffffff;
+            background: #f36100;
+            padding: 15px 0;
+            font-weight: 400;
+        }
+        p{
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
+        <div class="d-flex justify-content-center">
+            <h1>Exercise Plan For {{user.username}}</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive class-timetable details-timetable">
+                        <table class="table table-bordered detail-table">
+                            <tbody>
+                                {% for day in all_day %}                             
+                                <tr>
+                                    <td class="detail-th">{{day}}</td>
+                                
+                                    {% for exe in exercise_plan_items %}
+                                        {% if exe.days == day %}
+                                        <td>
+                                            <h2>
+                                                {{exe.exercise.exercise_name}}
+                                            </h2>
+                                            <p>{{exe.domain}}</p>
+                                            <p>{{exe.exercise_details}}</p>
+                                        </td>
+                                        {% else %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

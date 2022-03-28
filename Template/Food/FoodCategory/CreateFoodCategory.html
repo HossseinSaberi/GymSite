@@ -16,16 +16,18 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                
-                                    {% render_field form.title type="text" class="form-control choosebox" placeholder="Category Title"%}
+                                <strong>Category Title :</strong>
+                                {% render_field form.title type="text" class="form-control choosebox" placeholder="Category Title"%}
                                 
                             </div>
                             <div class="form-group col-md-12">
-                            
+                                
+                                <strong>Image :</strong>
                                 {% render_field form.image type="file" class="form-control choosebox"%}
-                            
+                                
                             </div>
                             <div class="form-group col-md-12">
+                                <strong>Category Parent :</strong>
                                 {% render_field form.parent type="text" class="form-control choosebox" placeholder="Parent"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">

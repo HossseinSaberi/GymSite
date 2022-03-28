@@ -14,21 +14,23 @@
                     <form method="POST" enctype='multipart/form-data' id="exercise_plan_item_input_form">
                         {%csrf_token%}
                         <div class="form-group col-md-12">
-                        {% render_field form.exercise_plan type="text" class="form-control choosebox" placeholder="Exercise Plan"%}
-                        </div>
-                        <div class="form-group col-md-12">
+                        <strong>Exercise Category :</strong>
                             {% render_field form.exercise_category type="text" class="form-control choosebox" placeholder="Exercise Category"%}
                         </div>
                         <div class="form-group col-md-12">
+                        <strong>Exercise :</strong>
                             {% render_field form.exercise type="text" class="form-control choosebox" placeholder="Exercise"%}
                         </div>
                         <div class="form-group col-md-12">
+                        <strong>Domain :</strong>
                             {% render_field form.domain type="text" class="form-control choosebox" placeholder="Domain"%}
                         </div>
                         <div class="form-group col-md-12">
+                        <strong>Days :</strong>
                             {% render_field form.days type="text" class="form-control choosebox" placeholder="Day"%}
                         </div>
                         <div class="form-group col-md-12">
+                        <strong>Details :</strong>
                                 {% render_field form.exercise_details type="text" class="form-control choosebox" placeholder="Details"%}
                         </div>
                         <div class="d-flex justify-content-center mb-4">

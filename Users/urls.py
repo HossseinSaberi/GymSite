@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import AthleteList ,DeleteAthlete , AthleteDetails , EditAthlete , MainPage , CreateAthlete , DeleteConfirm
+from .views import AthleteList ,DeleteAthlete , AthleteDetails , EditAthlete, ExportE_Pdf , ExportF_Pdf , ExportM_Pdf , Login , Logout ,  MainPage , CreateAthlete , DeleteConfirm
 
 urlpatterns = [
     path('', MainPage.as_view() , name = 'MainPage'),
+    path('Login/', Login , name = 'Login'),
+    path('Logout/', Logout , name = 'Logout'),
     path('<int:athleteid>/DeleteConfirmAthlete/', DeleteConfirm.as_view() , name = 'DeleteConfirm'),
     path('<int:domainid>/DeleteConfirmDomain/', DeleteConfirm.as_view() , name = 'DeleteConfirm'),
     path('<int:exercisecategoryid>/DeleteConfirmExerciseCat/', DeleteConfirm.as_view() , name = 'DeleteConfirm'),
@@ -22,4 +24,7 @@ urlpatterns = [
     path('manage_athlete/<int:pk>/DeleteAthlete/' , DeleteAthlete.as_view() , name='DeleteAthlete'),
     path('manage_athlete/<int:pk>/AthleteDetails/' , AthleteDetails.as_view() , name='AthleteDetails'),
     path('manage_athlete/<int:pk>/EditAthlete/' , EditAthlete.as_view() , name='EditAthlete'),
+    path('manage_athlete/<int:pk>/ExportEPdf/' , ExportE_Pdf , name='ExportEPdf'),
+    path('manage_athlete/<int:pk>/ExportFPdf/' , ExportF_Pdf , name='ExportFPdf'),
+    path('manage_athlete/<int:pk>/ExportMPdf/' , ExportM_Pdf , name='ExportMPdf'),
 ]

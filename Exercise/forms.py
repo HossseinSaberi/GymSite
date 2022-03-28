@@ -20,10 +20,19 @@ class CreateOrEditExercisePlan(forms.ModelForm):
         exclude = ['start_date' , 'exercise']
 
     
-class CreateOrEditExercisePlanItem(forms.ModelForm):
+class CreateExercisePlanItem(forms.ModelForm):
     class Meta:
         model = ExercisePlanItems
         fields = '__all__'
+
+    def __init__(self, exerciseplan ,  *args, **kwargs):
+        super(CreateExercisePlanItem, self).__init__(*args, **kwargs)
+        self.fields['exercise_plan'] = forms.ModelChoiceField(queryset= ExercisePlan.objects.filter(athlete__id=exerciseplan) , empty_label=None)
+
+class EditExercisePlanItem(forms.ModelForm):
+    class Meta:
+        model = ExercisePlanItems
+        exclude = ['exercise_plan',]
 
 
 class CreateOrEditDomain(forms.ModelForm):

@@ -5,7 +5,7 @@ from smart_selects.db_fields import ChainedForeignKey
 class MedicineCategory(models.Model):
     title = models.CharField(verbose_name="Category Title", max_length=50)
     image = models.ImageField(
-        "Category Image", upload_to='Medicine/Category/', null=True, blank=True , default='static/DM.jpg')
+        "Category Image", upload_to='Medicine/Category/',  default='DM.jpg')
     parent = models.ForeignKey(
         "self", verbose_name='Parent',  on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -15,7 +15,7 @@ class MedicineCategory(models.Model):
 class Medicine(models.Model):
     medicine_name = models.CharField(verbose_name="Medicine Name", max_length=50)
     medicine_image = models.ImageField(
-        verbose_name="Medicine Image", upload_to='Medicine/', null=True, blank=True , default='static/DM.jpg')
+        verbose_name="Medicine Image", upload_to='Medicine/',  default='DM.jpg')
     medicine_category = models.ForeignKey(
         MedicineCategory, verbose_name="Medicine Category", on_delete=models.CASCADE)
 

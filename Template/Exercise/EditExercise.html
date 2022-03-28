@@ -16,20 +16,23 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                
-                                    {% render_field form.exercise_name type="text" class="form-control choosebox" placeholder="Exercise Name"%}
-                                
-                            </div>
-                            <div class="form-group col-md-12">
-                                
-                                    {% render_field form.exercise_category type="text" class="form-control choosebox" placeholder="Exercise Category"%}
+                                <strong>Exercise Name :</strong>
+                                {% render_field form.exercise_name type="text" class="form-control choosebox"%}
                                 
                             </div>
                             <div class="form-group col-md-12">
+                                
+                                <strong>Exercise Category :</strong>
+                                {% render_field form.exercise_category type="text" class="form-control choosebox"%}
+                                
+                            </div>
+                            <div class="form-group col-md-12">
+                                <strong>Image :</strong>
                                 {% render_field form.exercise_image type="file" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                    {% render_field form.exercise_details type="text" class="form-control choosebox" placeholder="Exercise Details"%}
+                                <strong>Exercise Details :</strong>
+                                    {% render_field form.exercise_details type="text" class="form-control choosebox"%}
                             </div>
                             <div class="d-flex display-justify-center mb-4">
                                 <div class="col-md-12">

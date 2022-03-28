@@ -16,21 +16,24 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                
-                                    {% render_field form.title type="text" class="form-control" placeholder="Domain Name"%}
-                                
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                
-                                    {% render_field form.set type="number" class="form-control choosebox" placeholder="Set"%}
-                                
+                                    <strong>Domain Name :</strong>
+                                    {% render_field form.title type="text" class="form-control"%}
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        
+                                    <strong>Set :</strong>
+                                    {% render_field form.set type="number" class="form-control choosebox"%}
+                                    
                                 </div>
                                 <div class="form-group col-md-4">
-                                    {% render_field form.count type="number" class="form-control choosebox" placeholder="Count"%}
+                                    <strong>Count :</strong>
+                                    {% render_field form.count type="number" class="form-control choosebox"%}
                                 </div>
                                 <div class="form-group col-md-4">
-                                        {% render_field form.rest type="number" class="form-control choosebox" placeholder="Rest"%}
+                                    <strong>Rest :</strong>
+                                        {% render_field form.rest type="number" class="form-control choosebox"%}
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mb-4">

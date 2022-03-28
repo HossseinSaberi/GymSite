@@ -16,22 +16,21 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12 ">
-                                
-                                    {% render_field form.food_name type="text" class="form-control choosebox" placeholder="Food Name"%}
+                                <strong>Food Name :</strong>
+                                {% render_field form.food_name type="text" class="form-control choosebox"%}
                                 
                             </div>
                             <div class="form-group col-md-12 ">
+                                <strong>Image :</strong>
                                 {% render_field form.food_image type="file" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12 ">
-                                    {% render_field form.food_category type="text" class="form-control choosebox" placeholder="Food Category"%}
+                                <strong>Food Category :</strong>
+                                {% render_field form.food_category type="text" class="form-control choosebox"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
-                                <div class="col-md-6">
-                                <a href="{% url 'FoodList' %}" onclick="document.getElementById('food_input_form').submit()" id="submit-a">Save</a>
-                                </div>
-                                <div class="col-md-6">
-                                <button type="submit" >Save & Add Another</button>
+                                <div class="col-md-12">
+                                <button type="submit" >Save</button>
                                 </div>
                             </div>
                     </div>
@@ -42,9 +41,3 @@
 </div>
 
 {% endblock AddFood %}
-
-<script>
-    function submit_form(){
-        document.getElementById('food_input_form').submit();
-    }
-</script>

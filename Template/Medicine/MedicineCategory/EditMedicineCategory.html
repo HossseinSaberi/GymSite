@@ -16,17 +16,16 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                
-                                    {% render_field form.title type="text" class="form-control choosebox" placeholder="Category Title"%}
-                                
+                                <strong>Category Title : </strong>
+                                {% render_field form.title type="text" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                            
+                                <strong>Image :</strong>
                                 {% render_field form.image type="file" class="form-control choosebox"%}
-                            
                             </div>
                             <div class="form-group col-md-12">
-                                {% render_field form.parent type="text" class="form-control choosebox" placeholder="Parent"%}
+                                <strong>Category Parent :</strong>
+                                {% render_field form.parent type="text" class="form-control choosebox"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-12">
@@ -39,11 +38,4 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    function submit_form(){
-        document.getElementById('MedicineCategory_input_form').submit();
-    }
-</script>
 {% endblock EditMedicineCategory %}

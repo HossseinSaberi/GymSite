@@ -1,18 +1,23 @@
-from django.shortcuts import render
-from django.urls import reverse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from urllib import response
+from django.shortcuts import render  , redirect
+from django.urls import reverse 
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth import authenticate , login , logout
 from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.base import TemplateView
-from .forms import CreateOrEditAthlete
+from .forms import CreateOrEditAthlete, LoginForm
 from Users.models import Athlete
 from Food.models import FoodCategory, FoodPlan, FoodPlanItems, Foods
 from Medicine.models import Medicine, MedicineCategory, MedicinePlan, MedicinePlanItems
 from Exercise.models import Domain, Exercise, ExerciseCategory, ExercisePlan, ExercisePlanItems
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.utils.translation import gettext as _
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 # Create your views here.
 class MainPage(LoginRequiredMixin , TemplateView):
@@ -33,7 +38,7 @@ class DeleteAthlete (LoginRequiredMixin, DeleteView):
 
 class CreateAthlete(LoginRequiredMixin , CreateView):
     model = Athlete
-    success_url = '/manage_athlete'
+    success_url = '/manage_athlete/'
     template_name = 'Athlete/CreateNewAthlete.html'
     form_class = CreateOrEditAthlete
 
@@ -171,3 +176,85 @@ class DeleteConfirm(LoginRequiredMixin , DeleteView):
                           {'verbose_name': queryset.model._meta.verbose_name})
         return obj
 
+
+
+def ExportE_Pdf(request , pk):
+    user = Athlete.objects.get(id = pk)
+    response = HttpResponse(content_type = "application/pdf")
+    response["content-Disposition"]=\
+        'attachment;filename='+user.username+'_ExercisePlan.pdf'
+
+
+    template_path="Pdf/ExercisePdf.html"
+    template = get_template(template_path)
+
+    exercise_plan_item = ExercisePlanItems.objects.filter(exercise_plan__athlete = pk)
+    days = ['SATURDAY' , 'SUNDAY' , 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY']
+    context = {"exercise_plan_items" : exercise_plan_item , "all_day" : days , "user" : user}
+
+
+    html = template.render(context)
+    pisa.CreatePDF(html  , dest=response)
+
+    return response
+
+
+def ExportF_Pdf(request , pk):
+    user = Athlete.objects.get(id = pk)
+    response = HttpResponse(content_type = "application/pdf")
+    response["content-Disposition"]=\
+        'attachment;filename='+user.username+'_FoodPlan.pdf'
+
+    template_path="Pdf/FoodPdf.html"
+    template = get_template(template_path)
+
+    food_plan_item = FoodPlanItems.objects.filter(food_plan__athlete = pk)
+    days = ['SATURDAY' , 'SUNDAY' , 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY']
+    context = {"food_plan_item" : food_plan_item , "all_day" : days , "user" : user}
+
+    html = template.render(context)
+    pisa.CreatePDF(html , dest=response)
+
+    return response
+
+
+def ExportM_Pdf(request , pk):
+    user = Athlete.objects.get(id = pk)
+    response = HttpResponse(content_type = "application/pdf")
+    response["content-Disposition"]=\
+        'attachment;filename='+user.username+'_MedicinePlan.pdf'
+
+    template_path="Pdf/MedicinePdf.html"
+    template = get_template(template_path)
+
+    medicine_plan_item = MedicinePlanItems.objects.filter(medicine_plan__athlete = pk)
+    days = ['SATURDAY' , 'SUNDAY' , 'MONDAY' , 'TUESDAY' , 'WEDNESDAY' , 'THURSDAY' , 'FRIDAY']
+    context = {"medicine_plan_item" : medicine_plan_item , "all_day" : days , "user" : user}
+
+    html = template.render(context)
+    pisa.CreatePDF(html , dest=response)
+
+    return response
+
+
+def Login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username = username , password = password)
+            if user:
+                login(request , user)
+                return redirect(reverse('MainPage'), {'request': request})
+            else:
+                messages.error(request , "the username or password is wrong" , extra_tags = 'danger')
+
+    else:
+        form = LoginForm()
+    return render(request,'Login.html' , {'form' : form})
+
+
+def Logout(request):
+    logout(request)
+    return redirect(reverse('Login'))

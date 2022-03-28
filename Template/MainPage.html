@@ -98,6 +98,7 @@
                                     <li><a href="{% url 'MedicineList'%}">Medicine</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{% url 'Logout' %}">Logout</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -105,12 +106,6 @@
                     <div class="top-option">
                         <div class="to-search search-switch">
                             <i class="fa fa-search"></i>
-                        </div>
-                        <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -122,19 +117,16 @@
     </header>
     <!-- Header End -->
     </div>
-    
     <!-- Hero Section -->
 
     {% block Hero %}{% endblock Hero %}
 
     <!-- End Hero Section -->
-
-    <!-- Confrim Delete Food Section -->
     <section class="bmi-calculator-section">
-        {% block DeleteConfrimModal %}{% endblock DeleteConfrimModal %}
+    <!-- Confrim Delete Food Section -->
+    {% block DeleteConfrimModal %}{% endblock DeleteConfrimModal %}
     </section>
     <!-- End Confrim Delete Food-->
-
 
     <!-- Athlete Section -->
         {% block manage_athlete %}{% endblock manage_athlete %}
@@ -153,7 +145,22 @@
     <!-- Medicine Section -->
         {% block manage_medicine %}{% endblock manage_medicine %}
     <!-- End Medicine Section-->
-    
+    <section class="bmi-calculator-section spad">
+        {% if messages %}
+            <div class="d-flex justify-content-center">
+        
+                {% for message in messages %}
+                <br>
+                <div class="alert alert-{{message.extra_tags}}">
+                  {{message}}
+                </div>
+                {% endfor %}
+        
+                {% endif %}
+        
+              </div>
+        </section>
+    {% block Login %}{% endblock Login %}
     <!-- Footer Section Begin -->
     <section class="footer-section">
         <div class="container">

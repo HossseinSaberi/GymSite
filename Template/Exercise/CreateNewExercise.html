@@ -16,27 +16,27 @@
                         {%csrf_token%}
                         {{ form.media.js }}
                             <div class="form-group col-md-12">
-                                
-                                    {% render_field form.exercise_name type="text" class="form-control choosebox" placeholder="Exercise Name"%}
-                                
-                            </div>
-                            <div class="form-group col-md-12">
-                                
-                                    {% render_field form.exercise_category type="text" class="form-control choosebox" placeholder="Exercise Category"%}
+                                <strong>Exercise Name :</strong>
+                                {% render_field form.exercise_name type="text" class="form-control choosebox"%}
                                 
                             </div>
                             <div class="form-group col-md-12">
+                                
+                                <strong>Exercise Category :</strong>
+                                {% render_field form.exercise_category type="text" class="form-control choosebox"%}
+                                
+                            </div>
+                            <div class="form-group col-md-12">
+                                <strong>Image :</strong>
                                 {% render_field form.exercise_image type="file" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                    {% render_field form.exercise_details type="text" class="form-control choosebox" placeholder="Exercise Details"%}
+                                <strong>Exercise Details :</strong>
+                                {% render_field form.exercise_details type="text" class="form-control choosebox"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
-                                <div class="col-md-6">
-                                <a href="{% url 'ExerciseList' %}" onclick="submit_form()" id="submit-a">Save</a>
-                                </div>
-                                <div class="col-md-6">
-                                <button type="submit" >Save & Add Another</button>
+                                <div class="col-md-12">
+                                <button type="submit" >Save</button>
                                 </div>
                             </div>
                     </div>
@@ -47,9 +47,3 @@
 </div>
 
 {% endblock AddExercise %}
-
-<script>
-    function submit_form(id){
-        document.getElementById('exercise_input_form').submit();
-    }
-</script>

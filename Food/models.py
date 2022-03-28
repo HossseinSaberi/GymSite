@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from Users.models import  Athlete
 from smart_selects.db_fields import ChainedForeignKey
@@ -7,7 +6,7 @@ from smart_selects.db_fields import ChainedForeignKey
 class FoodCategory(models.Model):
     title = models.CharField(verbose_name="Category Title", max_length=50)
     image = models.ImageField(
-        "Category Image", upload_to='Food/Category/', null=True, blank=True , default='static/DF.jpg')
+        "Category Image", upload_to='Food/Category/',  default='DF.jpg')
     parent = models.ForeignKey(
         "self", verbose_name='Parent',  on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -18,7 +17,7 @@ class FoodCategory(models.Model):
 class Foods(models.Model):
     food_name = models.CharField(verbose_name="Food Name", max_length=50)
     food_image = models.ImageField(
-        verbose_name="Food Image", upload_to='Food/', null=True, blank=True , default='static/DF.jpg')
+        verbose_name="Food Image", upload_to='Food/',  default='DF.jpg')
     food_category = models.ForeignKey(
         FoodCategory, verbose_name="Food Category", on_delete=models.CASCADE)
 
@@ -64,7 +63,7 @@ class FoodPlanItems(models.Model):
         FoodPlan, verbose_name="Food Plan", on_delete=models.CASCADE, related_name='foodplan_items')
     food_category = models.ForeignKey(FoodCategory, verbose_name="Food Category", on_delete=models.CASCADE , null=True , blank=True)
     foods =  ChainedForeignKey(
-        Foods, verbose_name="Exercise", chained_field='food_category', chained_model_field = "food_category" , show_all=False , sort=True)
+        Foods, verbose_name="Food", chained_field='food_category', chained_model_field = "food_category" , show_all=False , sort=True)
     food_details = models.CharField(verbose_name="Food Details" , max_length=100)
 
     count = models.PositiveIntegerField(verbose_name="Count")

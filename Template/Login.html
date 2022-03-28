@@ -1,0 +1,32 @@
+{% extends 'MainPage.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block Login %}
+<section class="class-details-section spad">
+{% comment %} <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg"> {% endcomment %}
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="chart-calculate-form">
+                <form method="POST" enctype='multipart/form-data' id="athlete_input_form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {% render_field form.username type="text" class="form-control choosebox" placeholder="UserName"%}
+                        </div>
+                        <div class="col-sm-6">
+                            {% render_field form.password type="password" class="form-control choosebox" placeholder="PassWord"%}
+                        </div>
+                        <div class="col-lg-12">
+                            <button type="submit">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% comment %} </section> {% endcomment %}
+</section>
+<!-- Breadcrumb Section End -->
+
+{% endblock Login %}
+

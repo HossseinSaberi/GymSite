@@ -6,7 +6,7 @@ PHONE_NUMBER_REGEX = RegexValidator(
     r'^(?:0|98|\+98|\+980|0098|098|00980)?(9\d{9})$')
 
 
-class Athlete(AbstractUser): # if login lazem shod az abstrctuser ers bebar
+class Athlete(models.Model): # if login lazem shod az abstrctuser ers bebar
     BODY_TYPE = [
         ('Ectomorphs', 'Ectomorphs'),
         ('Mesomorphs', 'Mesomorphs'),
@@ -18,8 +18,8 @@ class Athlete(AbstractUser): # if login lazem shod az abstrctuser ers bebar
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField('email address', unique=True)
     user_image = models.ImageField(
-        'Profile Image',  upload_to=None, null=True, blank=True , default='static/DU.jpg')
-    address = models.TextField('Address',  null=True, blank=True)
+        'Profile Image',  upload_to=None, default='DU.jpg')
+    address = models.CharField('Address', max_length=100 , null=True, blank=True)
     age = models.IntegerField('Age',  null=True, blank=True)
     mobile_number = models.CharField(
         'Mobile Number', max_length=15, unique=True,  validators=[PHONE_NUMBER_REGEX])

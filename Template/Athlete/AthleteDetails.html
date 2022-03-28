@@ -99,6 +99,9 @@
 
 <!-- Class Timetable Section Begin -->
 {% if exercise_plan %}
+<div class="container my-5 spad">
+    <a class='btn btn-outline-success btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportEPdf/'>Export PDF</a>
+</div>
 <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
     <div class="container">
         <div class="row">
@@ -130,11 +133,15 @@
         </div>
     </div>
 </section>
+
 {% endif %}
 <!-- Class Timetable Section End -->
 
 
 {% if food_plan %}
+<div class="container my-5 spad">
+    <a class='btn btn-outline-warning btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportFPdf/'>Export PDF</a>
+</div>
 <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
     <div class="container">
         <div class="row">
@@ -168,6 +175,9 @@
 {% endif %}
 
 {% if medicine_plan %}
+<div class="container my-5 spad">
+    <a class='btn btn-outline-secondary btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportMPdf/'>Export PDF</a>
+</div>
 <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
     <div class="container">
         <div class="row">

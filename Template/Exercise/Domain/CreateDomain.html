@@ -16,29 +16,28 @@
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                
-                                    {% render_field form.title type="text" class="form-control" placeholder="Domain Name"%}
+                                <strong>Domain Name :</strong>    
+                                {% render_field form.title type="text" class="form-control"%}
                                 
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
-                                
-                                    {% render_field form.set type="number" class="form-control choosebox" placeholder="Set"%}
+                                    <strong>Set :</strong>
+                                    {% render_field form.set type="number" class="form-control choosebox"%}
                                 
                                 </div>
                                 <div class="form-group col-md-4">
-                                    {% render_field form.count type="number" class="form-control choosebox" placeholder="Count"%}
+                                    <strong>Count :</strong>
+                                    {% render_field form.count type="number" class="form-control choosebox"%}
                                 </div>
                                 <div class="form-group col-md-4">
-                                        {% render_field form.rest type="number" class="form-control choosebox" placeholder="Rest"%}
+                                    <strong>Rest :</strong>
+                                        {% render_field form.rest type="number" class="form-control choosebox"%}
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mb-4">
-                                <div class="col-md-6">
-                                <a href="{% url 'ExerciseList' %}" onclick="submit_form()" id="submit-a">Save</a>
-                                </div>
-                                <div class="col-md-6">
-                                <button type="submit" >Save & Add Another</button>
+                                <div class="col-md-12">
+                                <button type="submit" >Save </button>
                                 </div>
                             </div>
                     </div>
@@ -47,11 +46,4 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    function submit_form(){
-        document.getElementById('Domain_input_form').submit();
-    }
-</script>
 {% endblock AddDomain %}

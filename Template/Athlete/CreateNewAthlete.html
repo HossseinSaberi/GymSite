@@ -16,13 +16,10 @@
                         {%csrf_token%}
 
                             <div class="row">
-                                <div class="form-group col-md-4 ">
+                                <div class="form-group col-md-6 ">
                                     {% render_field form.username type="text" class="form-control choosebox" placeholder="UserName"%}
                                 </div>
-                                <div class="form-group col-md-4 ">
-                                    {% render_field form.password type="password" class="form-control choosebox" placeholder="Email"%}
-                                </div> 
-                                <div class="form-group col-md-4 ">
+                                <div class="form-group col-md-6 ">
                                     {% render_field form.email type="text" class="form-control choosebox" placeholder="Email"%}
                                 </div>        
                             </div>
@@ -54,10 +51,7 @@
                             </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-6">
-                                <a href="{% url 'FoodList' %}" onclick="document.getElementById('food_input_form').submit()" id="submit-a">Save</a>
-                                </div>
-                                <div class="col-md-6">
-                                <button type="submit" >Save & Add Another</button>
+                                <button type="submit" >Save</button>
                                 </div>
                             </div>
                     </div>
@@ -67,10 +61,4 @@
     </div>
 </div>
 
-
-<script>
-    function submit_form(){
-        document.getElementById('athlete_input_form').submit();
-    }
-</script>
 {% endblock AddAthlete %}

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'smart_selects',
     'django_tables2',
+    'xhtml2pdf',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ROOT_URLCONF = 'Gym.urls'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/Login/'
 
 TEMPLATES = [
     {
@@ -142,4 +145,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'Image/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'Users.Athlete'
+# AUTH_USER_MODEL = 'Users.Athlete'

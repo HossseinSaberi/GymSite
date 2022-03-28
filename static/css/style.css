@@ -116,7 +116,7 @@ ol {
 	padding: 200px 0 50px 0;
 }
 .span-detail{
-	display: inline-flex;
+	display: inline-flex !important;
 	justify-content: end;
 }
 .detail-th{
