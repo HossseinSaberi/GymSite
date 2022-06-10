@@ -1,0 +1,22 @@
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block DeleteConfrimModal %}
+
+<div class="d-flex justify-content-center">
+    <form method="post" action="{% url 'DeleteConfirm' }">
+
+        {%csrf_token%}
+
+        <h2 class="title">آیا از حذف این مورد مطمئن هستید ؟ </h2>
+        <div class="d-flex justify-content-center">
+        <input type="hidden" value="{{object.id}}">
+        <button class='btn btn-sm btn-outline-danger mt-4'type="submit">حذف</button>
+        {% comment %} <a href="{%url '{{object.url}}' %}"></a> {% endcomment %}
+        </div>
+
+    </form>
+</div>
+{% endblock DeleteConfrimModal %}
+

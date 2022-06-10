@@ -1,41 +1,49 @@
-{% extends 'Food/manage_food.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
 {% block EditFoodPlan %}
-<div class="container spad">
-    <div class="row pt-5 justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="section-title chart-calculate-title">
-                <span>For Your Plans</span>
-                <h2>Food Plan Editor</h2>
+            <div class="section-title chart-calculate-title text-right">
+                <h2>ویرایش برنامه غذایی</h2>
+                <span>اطلاعات مربوط به برنامه غذایی را وارد نمایید</span>
             </div>
             <div class="chart-calculate-form">
-                    <form method="POST" enctype='multipart/form-data' id="food_plan_input_form">
+                    <form method="POST" enctype='multipart/form-data' id="exercise_plan_input_form" action="{%url 'EditFoodPlan' object.id%}">
 
                         {%csrf_token%}
 
-                            <div class="form-group col-md-12">
-                                <label for="for">For :</label>
-                                {% render_field form.athlete type="text" class="form-control choosebox" id="for"%}
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="end_date">End Date :</label>
-                                {% render_field form.end_date type="Date" class="form-control choosebox" id="end_date"%}
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="status">Status :</label>
-                                    {% render_field form.status type="text" class="form-control choosebox" id="status"%}
-                            </div>
+                        <div class="form-group col-md-12">
+                            <label for="for">ورزشکار :</label>
+                            {% render_field form.athlete type="text" class="form-control choosebox" id="for"%}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="end_date">تاریخ پایان :</label>
+                            {% render_field form.end_date  class="form-control choosebox" id="datepicker"}
+                        </div>
+                        <div class="form-group col-md-12">
+                                <label for="status">وضعیت :</label>
+                                {% render_field form.status type="text" class="form-control choosebox" id="status"%}
+                        </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-12">
-                                    <button type="submit" >Edit</button>
+                                <button type="submit" >ثبت تغییرات</button>
                                 </div>
                             </div>
-                    </form>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    $("#datepicker").persianDatepicker({
+        formatDate: "YYYY-0M-0D",
+        onSelect: function () {
+            console.log($("#datepicker").attr("data-jdate"));
+        }
+      });
+</script>
 {% endblock EditFoodPlan %}

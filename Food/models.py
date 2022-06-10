@@ -1,6 +1,8 @@
 from django.db import models
 from Users.models import  Athlete
 from smart_selects.db_fields import ChainedForeignKey
+from jalali_date import date2jalali
+from django_jalali.db import models as jmodels
 # Create your models here.
 
 class FoodCategory(models.Model):
@@ -27,13 +29,13 @@ class Foods(models.Model):
 
 class FoodPlan(models.Model):
     STATUS = [
-        ('CUT', 'cut'),
-        ('UP', 'up'),
-        ('DIET', 'diet'),
+        ('کات', 'کات'),
+        ('افزایش وزن', 'افرایش وزن'),
+        ('کاهش وزن', 'کاهش وزن'),
     ]
 
-    start_date = models.DateField(verbose_name="Start Date", auto_now_add=True)
-    end_date = models.DateField(verbose_name="End Date")
+    start_date = jmodels.jDateField(verbose_name="Start Date", auto_now_add=True)
+    end_date = jmodels.jDateField(verbose_name="End Date")
     status = models.CharField(verbose_name="Status",
                               choices=STATUS, max_length=50)
     # system_number = models.CharField(
@@ -48,16 +50,21 @@ class FoodPlan(models.Model):
     def __str__(self) :
         return self.athlete.username
 
+    def get_start_date(self):
+            return date2jalali(self.start_date)
+
+    def get_end_date(self):
+        return date2jalali(self.end_date)
 
 class FoodPlanItems(models.Model):
     DAYS_OF_WEEK = [
-        ('SATURDAY', 'Saturday'),
-        ('SUNDAY', 'Sunday'),
-        ('MONDAY', 'Monday'),
-        ('TUESDAY', 'Tuesday'),
-        ('WEDNESDAY', 'Wednesday'),
-        ('THURSDAY', 'Thursday'),
-        ('FRIDAY', 'Friday'),
+         ('شنبه', 'شنبه'),
+        ('یکشنبه', 'یکشنبه'),
+        ('دوشنبه', 'دوشنبه'),
+        ('سه شنبه', 'سه شنبه'),
+        ('چهارشنبه', 'چهارشنبه'),
+        ('پنج شنبه', 'پنج شنبه'),
+        ('جمعه', 'جمعه'),
     ]
     food_plan = models.ForeignKey(
         FoodPlan, verbose_name="Food Plan", on_delete=models.CASCADE, related_name='foodplan_items')

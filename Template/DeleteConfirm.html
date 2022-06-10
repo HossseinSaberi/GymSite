@@ -1,19 +1,18 @@
-{% extends 'MainPage.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
 
 {% block DeleteConfrimModal %}
 
-<div class="d-flex justify-content-center spad delete-pad">
-    <form method="post">
-
+<div class="d-flex justify-content-center">
+    <form method="post" action="/{{object.id}}/{{address}}/">
+        
         {%csrf_token%}
 
-        <h2 class="title">Are You Sure To Delete {{object.name}}?</h2>
+        <h3 class="title" style="Color: #000000; font-family: 'Yekan' ; ">آیا از حذف این مورد مطمئن هستید ؟ </h3>
         <div class="d-flex justify-content-center">
-        <button class='btn btn-sm btn-outline-danger mt-4'type="submit">DELETE</button>
-        {% comment %} <a href="{%url '{{object.url}}' %}">back</a> {% endcomment %}
+        <input type="hidden" value="{{object.id}}">
+        <button class='btn btn-sm btn-outline-danger mt-4'type="submit">حذف</button>
         </div>
 
     </form>

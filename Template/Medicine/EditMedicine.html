@@ -1,37 +1,37 @@
-{% extends 'Medicine/manage_medicine.html' %}
+
 {% load widget_tweaks %}
 {% load static %}
 
 {% block EditMedicine %}
-<div class="container spad">
-    <div class="row pt-5 justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="section-title chart-calculate-title">
-                <span>For Your Plans</span>
-                <h2>Medicine Editor</h2>
+            <div class="section-title chart-calculate-title text-right">
+                <h2>ویرایش مکمل</h2>
+                <span>اطلاعات مربوط به مکمل را وارد نمایید</span>
             </div>
             <div class="chart-calculate-form">
-                <form method="POST" enctype='multipart/form-data' id="input_form">
+                    <form method="POST" enctype='multipart/form-data' id="medicine_input_form" action="{% url 'EditMedicine' object.id%}">
 
-                    {%csrf_token%}
+                        {%csrf_token%}
 
-                        <div class="form-group col-md-12">
-                            <strong>Medicine Name :</strong>
-                            {% render_field form.medicine_name type="text" class="form-control choosebox"%}
-                        </div>
-                        <div class="form-group col-md-12">
-                            <strong>Image :</strong>
-                            {% render_field form.medicine_image type="file" class="form-control choosebox"%}
-                        </div>
-                        <div class="form-group col-md-12">
-                            <strong>Medicine Category :</strong>
-                            {% render_field form.medicine_category type="text" class="form-control choosebox"%}
-                        </div>
-                        <div class="d-flex justify-content-center mb-4">
-                            <div class="col-md-12">
-                            <button type="submit" >Edit</button>
+                            <div class="form-group col-md-12 ">
+                                <strong>نام مکمل :</strong>
+                                {% render_field form.medicine_name type="text" class="form-control choosebox"%}
                             </div>
-                        </div>
+                            <div class="form-group col-md-12 ">
+                                <strong>تصویر :</strong>
+                                {% render_field form.medicine_image type="file" class="form-control choosebox"%}
+                            </div>
+                            <div class="form-group col-md-12 ">
+                                <strong>گروه دارویی :</strong>
+                                {% render_field form.medicine_category type="text" class="form-control choosebox"%}
+                            </div>
+                            <div class="d-flex justify-content-center mb-4">
+                                <div class="col-md-12">
+                                <button type="submit" >ثبت تغییرات</button>
+                                </div>
+                            </div>
                 </form>
             </div>
         </div>

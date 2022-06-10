@@ -7,6 +7,7 @@ backcall==0.2.0
 cssselect2==0.5.0
 decorator==5.1.1
 Django==4.0.2
+django-jalali-date==1.0.1
 django-smart-selects==1.5.9
 django-tables2==2.4.1
 django-widget-tweaks==1.4.12
@@ -14,6 +15,7 @@ executing==0.8.3
 future==0.18.2
 html5lib==1.1
 ipython==8.1.1
+jdatetime==4.1.0
 jedi==0.18.1
 lxml==4.8.0
 matplotlib-inline==0.1.3

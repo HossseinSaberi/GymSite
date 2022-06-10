@@ -1,4 +1,3 @@
-{% extends 'Food/manage_food.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
@@ -6,36 +5,38 @@
 <div class="container spad">
     <div class="row pt-5 justify-content-center">
         <div class="col-lg-6">
-            <div class="section-title chart-calculate-title">
-                <span>For Your Plans</span>
-                <h2>Food Plan Item Editor</h2>
+            <div class="section-title chart-calculate-title text-right">
+                <h2 style="color : #fff">ویرایش غذای موجود برنامه</h2>
+                <span>اطلاعات مربوط به غذا را وارد نمایید</span>
             </div>
             <div class="chart-calculate-form">
-                    <form method="POST" enctype='multipart/form-data' id="exercise_plan_item_input_form">
+                    <form method="POST" enctype='multipart/form-data' id="food_plan_item_input_form" action="{{object.pk}}/">
+
                         {%csrf_token%}
-                            <div class="form-group col-md-12">
-                                <strong>Food Category :</strong>
-                                {% render_field form.food_category type="text" class="form-control choosebox"%}
-                            </div>
-                            <div class="form-group col-md-12">
-                                <strong>Food :</strong>
-                                {% render_field form.foods type="text" class="form-control choosebox"%}
-                            </div>
-                            <div class="form-group col-md-12">
-                                <strong>Count :</strong>
-                                {% render_field form.count type="text" class="form-control choosebox"%}
-                            </div>
-                            <div class="form-group col-md-12">
-                                <strong>Day :</strong>
-                                {% render_field form.days type="text" class="form-control choosebox"%}
-                            </div>
-                            <div class="form-group col-md-12">
-                                <strong>Details :</strong>
+
+                        <div class="form-group col-md-12">
+                            <strong>گروه غذایی :</strong>
+                            {% render_field form.food_category type="text" class="form-control choosebox"%}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <strong>غذا :</strong>
+                            {% render_field form.foods type="text" class="form-control choosebox"%}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <strong>تعداد یا مقدار :</strong>
+                            {% render_field form.count type="text" class="form-control choosebox"%}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <strong>روز :</strong>
+                            {% render_field form.days type="text" class="form-control choosebox"%}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <strong>جزئيات غذا:</strong>
                                 {% render_field form.food_details type="text" class="form-control choosebox"%}
-                            </div>
+                        </div>
                         <div class="d-flex justify-content-center mb-4">
                             <div class="col-md-12">
-                            <button type="submit" >Save</button>
+                            <button type="submit" >ثبت تغییرات</button>
                             </div>
                         </div>
                     </div>

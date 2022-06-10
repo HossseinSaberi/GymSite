@@ -4,60 +4,199 @@
 
 {% block MedicinePlanList %}
 
-<div class="d-flex justify-content-center mt-5 spad">
-    <a class='btn btn-outline-success btn-lg' href="{% url 'AddMedicinePlan'%}">New Medicine Plan</a>
-  </div>
+<div class="d-flex justify-content-center my-5 spad">
+    <a class='btn btn-outline-success btn-lg' onclick="CreatePlan('/manage_medicine/AddMedicinePlan/')">برنامه دارویی جدید</a>
+</div>
 <hr>
-<div class="card-body">
-  <div class="table-responsive class-timetable details-timetable">
-    <table class="table table-bordered table-hover" >
-        <thead class=" text-primary">
-          <tr>
-            <th>
-                For
-              </th>
-            <th>
-              Start Date
-            </th>
-            <th>
-              End Date
-            </th>
-            <th>
-              MANAGE
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for object in AllMedicinePlan %}
-            
-            <tr>
-                <td>
-                    {{object.athlete}}
-                </td>
-                <td>
-                    {{object.start_date}}
-                </td>
-                <td>
-                    {{object.end_date}}
-                </td>
-                <td>
-                    <div >
-                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicinePlan/" id="manage-icon">
-                          <i class='fa fa-trash'></i>
-                        </a>
-                        <a class='d-inline-block border-2 mx-3' href="/manage_medicine/{{object.id}}/EditMedicinePlan/" id="manage-icon">
-                          <i class='fa fa-edit'></i>
-                        </a>
-                      </div>
-                </td>
-              </tr>
+<div class="row">
+  <div class="d-block container" style="padding: 0 40px" class="txtSearch">
+    <div class="d-block container my-5">
+      <div class="row justify-content-center">
+        <!-- <div>
+          <label class="switch">
+            <input type="checkbox" id="togBtn">
+            <div class="slider round" id="toggleswitch">
+              <span class="on">AND</span>
+              <span class="off">OR</span>
+            </div>
+          </label>
+        </div> -->
+        <select name="athlete" id="athlete-select" class="form-control choosebox col-md-2 mx-2">
+          <option value="">همه ورزشکاران</option>
+          {% for athlete in all_person %}
+          <option value="{{athlete.username}}">{{athlete.username}}</option>
+          {% endfor %}
+        </select>
+        <!-- <input type='text' class="form-control choosebox col-md-2 mx-2" id="start_date_picker" placeholder="تاریخ شروع">
+        <input type='text' class="form-control choosebox col-md-2 mx-2" id="end_date_picker" placeholder="تاریخ پایان"> -->
+        <select name="status" id="status-select" class="form-control choosebox col-md-2 mx-2">
+          <option value="">همه وضعیت ها</option>
+          {% for status in all_status %}
+          <option value="{{status}}">{{status}}</option>
+          {% endfor %}
+        </select>
+        <a onclick="refresh()" id="refresh_icon" class="d-content border-2 mx-3"><i class='fa fa-refresh' id="refresh_icon_id"></i></a>
+      </div>
+    </div>
+    {% for object in AllMedicinePlan %}
+    <div class="containerBX m-3 float-left" id="cards">
+      <div class="cardBX">
+        <div class="contentBx">
+          <h4 class="namesearch">{{object.athlete}}</h4>
+          <div class="sizeBX">
+            <p>تاریخ شروع :</p>
+            <p class="chooseStartDate">{{object.start_date}}</p>
+          </div>
+          <div class="sizeBX">
+            <p>تاریخ پایان :</p>
+            <p class="chooseEndDate">{{object.end_date}}</p>
+          </div>
+          <div class="sizeBX">
+            <p>وضعیت دوره :</p>
+            <p class="statussearch">{{object.status}}</p>
+          </div>
+          <div class="colorBX">
+          <a class='d-inline-block border-2 mx-3' onclick="DeletePlan('/{{object.id}}/DeleteConfirmMedicinePlan/')"
+            id="card_icon">
+            <i class='fa fa-trash'></i>
+          </a>
+          <a class='d-inline-block border-2 mx-3' onclick="EditPlan('/manage_medicine/{{object.id}}/EditMedicinePlan/')"
+            id="card_icon">
+            <i class='fa fa-edit'></i>
+          </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
-            {% endfor %}
-        </tbody>
-      </table>
+<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="myModalBody">
+      </div>
     </div>
   </div>
 </div>
 
+<script>
+  function DeletePlan(url){
+    $.get(url , function(result){
+      $("#myModal").modal('show');
+      $("#myModalLabel").html("Delete Medicine Plan");
+      $("#myModalBody").html(result);
+    });
+  }
 
+
+  function EditPlan(url){
+    $.get(url , function(result){
+      $("#myModal").modal('show');
+      $("#myModalLabel").html("Edit Medicine Plan");
+      $("#myModalBody").html(result);
+    });
+  }
+
+  function CreatePlan(url){
+    $.get(url , function(result){
+      $("#myModal").modal('show');
+      $("#myModalLabel").html("Create Medicine Plan");
+      $("#myModalBody").html(result);
+    });
+  }
+
+  function refresh(){
+    $('#athlete-select').trigger("change");
+    $('#athlete-select').val("");
+    $("#status-select").trigger("change");
+    $("#status-select").val("");
+    /*$("#start_date_picker").val("");
+    $("#start_date_picker").trigger("keyup");
+    $("#end_date_picker").val("");
+    $("#end_date_picker").trigger("keyup");*/
+  }
+
+  $("#end_date_picker").persianDatepicker({
+    formatDate: "YYYY-0M-0D",
+    onSelect: function () {
+        var value = $("#end_date_picker").attr("value");
+        console.log(value);
+        $(".chooseEndDate").filter(function() {
+          $(this).closest("#cards").toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        })
+      }
+  });
+
+  $("#start_date_picker").persianDatepicker({
+      formatDate: "YYYY-0M-0D",
+      onSelect: function () {
+          var value = $("#start_date_picker").attr("value");
+          console.log(value);
+          $(".chooseStartDate").filter(function() {
+            $(this).closest("#cards").toggle($(this).text().toLowerCase().indexOf(value) > -1);
+          })
+        }
+  });
+
+  $(document).ready(function(){
+    $("#athlete-select").change(function() {
+      var value = $(this).children("option:selected").val();
+      $(".namesearch").filter(function() {
+        $(this).closest("#cards").toggle($(this).text().indexOf(value) > -1);
+      });
+    });
+  });
+  
+  $(document).ready(function(){
+    $("#start_date_picker").on("keyup" , function() {
+      var value = $("#start_date_picker").val();
+      console.log(value);
+      $(".chooseEndDate").filter(function() {
+        $(this).closest("#cards").toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $("#status-select").change(function() {
+      var value = $(this).children("option:selected").val();
+      $(".statussearch").filter(function() {
+        $(this).closest("#cards").toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $("#end_date_picker").change(function() {
+      var value = $(this).val();
+      console.log(value);
+      $(".chooseEndDate").filter(function() {
+        $(this).closest("#cards").toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $('input[type="radio"]').click(function () {
+      var inputValue = $(this).attr("value");
+      if (inputValue == "on") {
+        $('#toggleswitch').addClass("toggleon");
+        $('#toggleswitch').removeClass("toggleoff");          
+      }
+      if (inputValue == "off") {
+        $('#toggleswitch').addClass("toggleoff");
+        $('#toggleswitch').removeClass("toggleon");          
+      }
+      
+    });
+  });
+</script>
 {% endblock MedicinePlanList %}

@@ -1,57 +1,46 @@
-{% extends 'Exercise/manage_exercise.html' %}
 {% load widget_tweaks %}
 {% load static %}
-
 {% block EditDomain %}
-<div class="container spad">
-    <div class="row pt-5 justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="section-title chart-calculate-title">
-                <span>For Your Plans</span>
-                <h2>Domain Editor</h2>
+            <div class="section-title chart-calculate-title text-right">
+                <h2 class="h-color">ویرایش دامنه حرکتی</h2>
+                <span>اطلاعات مربوط به دامنه حرکتی را وارد نمایید</span>
             </div>
             <div class="chart-calculate-form">
-                    <form method="POST" enctype='multipart/form-data' id="Domain_input_form">
+                    <form method="POST" enctype='multipart/form-data' id="Domain_input_form" action="{% url 'EditDomain' object.id %}">
 
                         {%csrf_token%}
 
                             <div class="form-group col-md-12">
-                                    <strong>Domain Name :</strong>
-                                    {% render_field form.title type="text" class="form-control"%}
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        
-                                    <strong>Set :</strong>
+                                <strong>نام دامنه :</strong>    
+                                {% render_field form.title type="text" class="form-control" %}
+                                
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <strong>ست :</strong>
                                     {% render_field form.set type="number" class="form-control choosebox"%}
-                                    
+                                
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <strong>Count :</strong>
+                                    <strong>تعداد :</strong>
                                     {% render_field form.count type="number" class="form-control choosebox"%}
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <strong>Rest :</strong>
+                                    <strong>استراحت :</strong>
                                         {% render_field form.rest type="number" class="form-control choosebox"%}
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-12">
-                                <button type="submit" >Edit</button>
+                                <button type="submit" >ثبت دامنه حرکتی جدید</button>
                                 </div>
                             </div>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
-<script>
-    function submit_form(){
-        document.getElementById('Domain_input_form').submit();
-    }
-</script>
 {% endblock EditDomain %}

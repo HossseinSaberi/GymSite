@@ -8,40 +8,34 @@
 <section class="class-details-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-10">
                 <div class="class-details-text">
                     <div class="">
                         <img src="img/classes/class-details/class-detailsl.jpg" alt="">
                     </div>
                     <div class="cd-trainer">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="cd-trainer-pic">
                                     <img src="{{object.user_image.url}}" alt="{{object.user_image}}">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="cd-trainer-text">
                                     <div class="trainer-title">
-                                        <h4>{{AthleteContext.username}}</h4>
+                                        <h2>{{AthleteContext.username}}</h4>
                                         <span>Trainer</span>
                                     </div>
-                                    <div class="trainer-social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                        <a href="#"><i class="fa fa-instagram"></i></a>
-                                        <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                                    </div>
+
                                     <ul class="trainer-info">
-                                        <li><span>Age</span><span class="span-detail">{{AthleteContext.age}}</span></li>
-                                        <li><span>Weight</span><span class="span-detail">{{AthleteContext.weight}} kg</span></li>
-                                        <li><span>Height</span><span class="span-detail">{{AthleteContext.height}} m</span></li>
-                                        <li><span>Body Type</span><span class="span-detail">{{AthleteContext.body_type}}</span></li>
+                                        <li><span>سن</span><span class="span-detail">{{AthleteContext.age}}</span></li>
+                                        <li><span>وزن</span><span class="span-detail">{{AthleteContext.weight}} kg</span></li>
+                                        <li><span>قد</span><span class="span-detail">{{AthleteContext.height}} m</span></li>
+                                        <li><span>نوع تیپ بدنی</span><span class="span-detail">{{AthleteContext.body_type}}</span></li>
                                         <li><span>BMI</span><span class="span-detail">{{AthleteContext.bmi}}</span></li>
-                                        <li><span>Body State</span><span class="span-detail">{{AthleteContext.body_state}}</span></li>
-                                        <li><span>Mobile Number</span><span class="span-detail">{{AthleteContext.mobile_number}}</span></li>
-                                        <li><span>Address</span><span class="span-detail">{{AthleteContext.address}}</span></li>
+                                        <li><span>وضعیت بدن</span><span class="span-detail">{{AthleteContext.body_state}}</span></li>
+                                        <li><span>شماره تماس</span><span class="span-detail">{{AthleteContext.mobile_number}}</span></li>
+                                        <li><span>آدرس</span><span class="span-detail">{{AthleteContext.address}}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -49,12 +43,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-8">
+            <div class="col-lg-2 col-md-8">
                 <div class="sidebar-option">
                     <div class="so-latest mt-5 ">
                         <div class="latest-item">
                             <div class="li-text">
-                                <h6><a href="#exercise_plan">Exercise Plan</a>
+                                <h6><a href="#exercise_plan">برنامه تمرینی</a>
                                 {% if exercise_plan %}
                                     <i class="fa fa-check" id="tik-icon"></i>
                                 {% else %}
@@ -65,7 +59,7 @@
                         </div>
                         <div class="latest-item">
                             <div class="li-text">
-                                <h6><a href="#food_plan">Food Plan</a>
+                                <h6><a href="#food_plan">برنامه غذایی</a>
                                     {% if food_plan %}
                                         <i class="fa fa-check" id="tik-icon"></i>
                                     {% else %}
@@ -78,7 +72,7 @@
                         </div>
                         <div class="latest-item">
                             <div class="li-text">
-                                <h6><a href="#medicine_plan">Medicine Plan</a>
+                                <h6><a href="#medicine_plan">برنامه مکمل</a>
                                     {% if medicine_plan %}
                                         <i class="fa fa-check" id="tik-icon"></i>
                                     {% else %}
@@ -100,7 +94,7 @@
 <!-- Class Timetable Section Begin -->
 {% if exercise_plan %}
 <div class="container my-5 spad">
-    <a class='btn btn-outline-success btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportEPdf/'>Export PDF</a>
+    <a class='btn btn-outline-success btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportEPdf/'>خروجی PDF</a>
 </div>
 <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
     <div class="container">
@@ -140,9 +134,9 @@
 
 {% if food_plan %}
 <div class="container my-5 spad">
-    <a class='btn btn-outline-warning btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportFPdf/'>Export PDF</a>
+    <a class='btn btn-outline-warning btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportFPdf/'>خروجی PDF</a>
 </div>
-<section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
+<section class="class-timetable-section class-details-timetable spad" id="food_plan">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -176,9 +170,9 @@
 
 {% if medicine_plan %}
 <div class="container my-5 spad">
-    <a class='btn btn-outline-secondary btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportMPdf/'>Export PDF</a>
+    <a class='btn btn-outline-secondary btn-lg' href='/manage_athlete/{{AthleteContext.id}}/ExportMPdf/'>خروجی PDF</a>
 </div>
-<section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
+<section class="class-timetable-section class-details-timetable spad" id="medicine_plan">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

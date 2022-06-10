@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="fa-IR">
 <head>
-    <meta charset="UTF-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pdf</title>
@@ -11,11 +11,22 @@
         border : 1px solid black;
         padding : 0.4cm;
         margin : 0.5cm;
+        direction: rtl;
+        }
+        @font-face {
+            font-family: Vazir;
+            src : url('/static/fonts/Vazir.ttf')
+            }
+    
+        body {
+        font-family: Vazir;
+        direction: rtl;
         }
         table{
             border: 1px , solid , black;
             text-align: center;
             vertical-align: inherit;
+
         }
         .detail-th{
             font-size: 14px;
@@ -27,14 +38,35 @@
         p{
             margin-top: 2px;
         }
+        .content {
+            position: absolute;
+            z-index: 1;
+        }
+        .watermark
+        {
+            position:absolute;
+            z-index:0;
+            background:white;
+            display:block;
+            min-height:50%; 
+            min-width:50%;
+            color:yellow;
+        }
+        #bgtext{
+            color:lightgrey;
+            font-size:120px;
+            transform:rotate(300deg);
+            -webkit-transform:rotate(300deg);
+        }
     </style>
 </head>
 <body>
-    <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
+    <div class="content">
+            <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
         <div class="d-flex justify-content-center">
-            <h1>Exercise Plan For {{user.username}}</h1>
+            <h1>برنامه تمرینی{{user.username}}</h1>
         </div>
-        <div class="container">
+        <div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive class-timetable details-timetable">
@@ -65,5 +97,6 @@
             </div>
         </div>
     </section>
+    </div>
 </body>
 </html>

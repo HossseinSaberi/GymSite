@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from django.views import View
 from .models import Domain, Exercise, ExerciseCategory, ExercisePlan, ExercisePlanItems
@@ -6,12 +7,13 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import CreateOrEditDomain, CreateOrEditExercise, CreateOrEditExercisePlan, CreateExercisePlanItem, CreateOrEditExerciseCategory , EditExercisePlanItem
+from .forms import CreateOrEditDomain, CreateOrEditExercise, CreateOrEditExercisePlan, CreateExercisePlanItem, CreateOrEditExerciseCategory, EditExercisePlanItem
 from django.urls import reverse
 from django_tables2 import SingleTableView
 from .tables import ExerciseTable
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+from Users.models import Athlete
 
 
 # Create your views here.
@@ -60,12 +62,19 @@ class ExercisePlanList(LoginRequiredMixin, ListView):
     template_name = 'Plans/ExercisePlans/ExercisePlanList.html'
     context_object_name = 'AllExercisePlan'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query_set = self.get_queryset()
+        context["all_person"] = Athlete.objects.all()
+        context["all_status"] = ["افزایش وزن" , "کاهش وزن" , "کات"]
+        return context
+    
 
 class CreateExercisePlan(LoginRequiredMixin, CreateView):
     model = ExercisePlan
+    success_url = '/manage_exercise/ExercisePlan/'
     template_name = 'Plans/ExercisePlans/CreateExercisePlan.html'
     form_class = CreateOrEditExercisePlan
-    success_url = '/manage_exercise/ExercisePlan/'
 
 
 class EditExercisePlan(LoginRequiredMixin, UpdateView):

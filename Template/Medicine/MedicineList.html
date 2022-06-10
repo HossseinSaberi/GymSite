@@ -4,130 +4,116 @@
 
 {% block MedicineList %}
 
-<div class="d-flex justify-content-center mt-5 spad">
-    <a class='btn btn-outline-success btn-lg m-2' href="{% url 'AddMedicine'%}">New Medicine</a>
-    <a class='btn btn-outline-warning btn-lg m-2' href="{% url 'CreateMedicineCategory'%}">New Category</a>
-  </div>
+<div class="d-flex justify-content-center spad">
+  <a class='btn btn-outline-success btn-lg m-2' onclick="Create('/manage_medicine/AddMedicine')">مکمل جدید</a>
+  <a class='btn btn-outline-warning btn-lg m-2' onclick="Create('/manage_medicine/CreateMedicineCategory')">گروه دارویی
+    جدید</a>
+</div>
 <hr>
 <div class="tab">
-  <button class="tablinks" onclick="callTable(event, 'Medicine')" id="defaultOpen">Medicine</button>
-  <button class="tablinks" onclick="callTable(event, 'Category')">Category</button>
+  <button class="tablinks" onclick="callTable(event, 'Medicine')" id="defaultOpen">مکمل ها</button>
+  <button class="tablinks" onclick="callTable(event, 'Category')">گروه های دارویی</button>
 </div>
-<div class="card-body">
-  <div class="tabcontent" id="Medicine"> 
-  <div class="table-responsive class-timetable details-timetable">
-    <table class="table table-bordered table-hover" >
-        <thead class=" text-primary">
-          <tr>
-            <th>
-              NAME
-            </th>
-            <th>
-              CATEGORY
-            </th>
-            <th>
-                IMAGE
-            </th>
-            <th>
-                MANAGE
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for object in AllMedicine %}
-            
-            <tr>
-                <td>
-                    {{object.medicine_name}}
-                </td>
-                <td>
-                    {{object.medicine_category}}
-                </td>
-                <td>
-                    <img src="{{object.medicine_image.url}}" alt="{{object.medicine_image}}" id="food-list">
-                </td>
-                <td>
-                    <div >
-                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicine/" id="manage-icon">
-                          <i class='fa fa-trash'></i>
-                        </a>
-                        <a class='d-inline-block border-2 mx-3' href="/manage_medicine/{{object.id}}/EditMedicine/" id="manage-icon">
-                          <i class='fa fa-edit'></i>
-                        </a>
-                      </div>
-                </td>
-              </tr>
 
-            {% endfor %}
-        </tbody>
-    </table>
+
+<div class="tabcontent" id="Medicine">
+  <div class="d-flex justify-content-center">
+    {% for object in AllMedicine %}
+    <div class="card border-warning text-white bg-dark m-3 d-inline-block" style="max-width: 10rem;">
+      <div class="card-body text-warning text-center">
+        <h4 class="card-title">{{object.medicine_name}}</h4>
+        <p class="card-text">{{object.medicine_category}}</p>
+        </p>
+      </div>
+      <div class="card-footer bg-transparent border-warning text-center">
+        <a class='d-inline-block border-2 mx-3' onclick="Delete('/{{object.id}}/DeleteConfirmMedicine/')" id="manage-icon">
+          <i class='fa fa-trash'></i>
+        </a>
+        <a class='d-inline-block border-2 mx-3' onclick="Edit('/manage_medicine/{{object.id}}/EditMedicine/')"
+          id="manage-icon">
+          <i class='fa fa-edit'></i>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
 
+<div class="tabcontent" id="Category">
+  <div class="d-flex justify-content-center">
+    {% for object in AllCategory %}
+    <div class="card border-warning text-white bg-dark m-3 d-inline-block" style="max-width: 10rem;">
+      <div class="card-body text-warning text-center">
+        <h4 class="card-title">{{object.title}}</h4>
+        <p class="card-text">{{object.parent}}</p>
+        </p>
+      </div>
+      <div class="card-footer bg-transparent border-warning text-center">
+        <a class='d-inline-block border-2 mx-3' onclick="Delete('/{{object.id}}/DeleteConfirmMedicineCat/')" id="manage-icon">
+          <i class='fa fa-trash'></i>
+        </a>
+        <a class='d-inline-block border-2 mx-3' onclick="Edit('/manage_medicine/{{object.id}}/EditMedicineCategory/')"
+          id="manage-icon">
+          <i class='fa fa-edit'></i>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
-  <div class="tabcontent" id="Category">
-    <div class="table-responsive class-timetable details-timetable">
-      <table class="table table-bordered table-hover" >
-        <thead class=" text-primary">
-          <tr>
-            <th>
-              TITLE
-            </th>
-            <th>
-              IMAGE
-            </th>
-            <th>
-              PARENT
-            </th>
-            <th>
-                MANAGE
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for object in AllCategory %}
-            
-            <tr>
-                <td>
-                    {{object.title}}
-                </td>
-                <td>
-                  <img src="{{object.image.url}}" alt="{{object.image}}" id="food-list">
-                </td>
-                <td>
-                    {{object.parent}}
-                </td>
-                <td>
-                    <div >
-                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicineCat/" id="manage-icon">
-                          <i class='fa fa-trash'></i>
-                        </a>
-                        <a class='d-inline-block border-2 mx-3' href="/manage_medicine/{{object.id}}/EditMedicineCategory/" id="manage-icon">
-                          <i class='fa fa-edit'></i>
-                        </a>
-                      </div>
-                </td>
-              </tr>
-
-            {% endfor %}
-        </tbody>
-      </table>
+<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="myModalBody">
+      </div>
     </div>
   </div>
 </div>
-
 <script>
-  function callTable(evt , tableName){
-    var i , tabcontent , tablinks;
+  function Delete(url) {
+    $.get(url, function (result) {
+      $("#myModal").modal('show');
+      $("#myModalLabel").html("Delete Exercise Plan");
+      $("#myModalBody").html(result);
+    });
+  }
+
+
+  function Edit(url) {
+    $.get(url, function (result) {
+      $("#myModal").modal('show');
+      $("#myModalLabel").html("Edit Exercise Plan");
+      $("#myModalBody").html(result);
+    });
+  }
+
+  function Create(url) {
+    $.get(url, function (result) {
+      $("#myModal").modal('show');
+      $("#myModalLabel").html("Create Food");
+      $("#myModalBody").html(result);
+    });
+  }
+
+  function callTable(evt, tableName) {
+    var i, tabcontent, tablinks;
 
     tabcontent = document.getElementsByClassName("tabcontent");
-    for (i=0 ; i<tabcontent.length ; i++){
+    for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
     }
 
     tablinks = document.getElementsByClassName("tablinks");
-    for(i=0 ; i<tablinks.length ; i++){
-      tablinks[i].className = tablinks[i].className.replace(" active" , "");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
     document.getElementById(tableName).style.display = "block";

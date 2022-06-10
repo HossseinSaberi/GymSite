@@ -1,38 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pdf</title>
-    <style>
-        @page {
-        size: letter landscape;
-        border : 1px solid black;
-        padding : 0.4cm;
-        margin : 0.5cm;
-        }
-        table{
-            border: 1px , solid , black;
-            text-align: center;
-            vertical-align: inherit;
-        }
-        .detail-th{
-            font-size: 14px;
-            color: #ffffff;
-            background: #f36100;
-            padding: 15px 0;
-            font-weight: 400;
-        }
-        p{
-            margin-top: 2px;
-        }
-    </style>
-</head>
-<body>
+<html dir="ltr" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        
+        <title>Pdf</title>
+        <style type="text/css">
+            @page {
+                size: letter landscape;
+                border : 1px solid black;
+                padding : 0.4cm;
+                margin : 0.5cm;
+                
+            }
+            @font-face {
+                font-family: Vazir;
+                src: url("static/fonts/Vazir.ttf");
+            }
+            body{
+                font-weight: 200;
+                font-size: 14px;
+                font-family: Vazir;
+                direction: rtl;
+            }
+            table{
+                font-family: Vazir;
+                border: 1px , solid , black;
+                text-align: center;
+                vertical-align: inherit;
+                
+            }
+            .detail-th{
+                font-size: 14px;
+                color: #ffffff;
+                background: #f36100;
+                padding: 15px 0;
+                font-weight: 400;
+            }
+            p{
+                margin-top: 2px;
+            }
+        </style>
+    </head>
+    <body>
+
     <section class="class-timetable-section class-details-timetable spad" id="exercise_plan">
         <div class="d-flex justify-content-center">
-            <h1>Food Plan For {{user.username}}</h1>
+            <h1>برنامه غذایی {{user.username}}</h1>
         </div>
         <div class="container">
             <div class="row">
@@ -67,3 +80,62 @@
     </section>
 </body>
 </html>
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="fa" dir="rtl">
+    <head>
+        <title>Title</title>
+        <meta charset="UTF-8">
+        <style type="text/css">
+            @font-face {
+                font-family: Vazir;
+                src: url("static/fonts/Vazir.ttf");
+            }
+            body{
+                font-weight: 200;
+                font-size: 14px;
+                font-family: Vazir;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'>Invoice # </p>
+            </div>
+        <div>
+        <div class='details'>
+            سلام چطوری <br/>
+            {{days}}:  <br/>
+            Date: 
+            <hr class='hrItem' />
+        </div>
+    </div>
+    </body>
+</html> -->

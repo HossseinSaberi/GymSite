@@ -1,42 +1,41 @@
-{% extends 'Exercise/manage_exercise.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
 {% block AddExercise %}
-<div class="container spad">
-    <div class="row pt-5 justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="section-title chart-calculate-title">
-                <span>For Your Plans</span>
-                <h2>Exercise Creator</h2>
+            <div class="section-title chart-calculate-title text-right">
+                <h2>ایجاد تمرین جدید</h2>
+                <span>اطلاعات مربوط به تمرین را وارد نمایید</span>
             </div>
             <div class="chart-calculate-form">
-                    <form method="POST" enctype='multipart/form-data' id="exercise_input_form">
+                    <form method="POST" enctype='multipart/form-data' id="exercise_input_form" action="{% url 'CreateExercise'%}">
 
                         {%csrf_token%}
                         {{ form.media.js }}
                             <div class="form-group col-md-12">
-                                <strong>Exercise Name :</strong>
+                                <strong>نام تمرین :</strong>
                                 {% render_field form.exercise_name type="text" class="form-control choosebox"%}
                                 
                             </div>
                             <div class="form-group col-md-12">
                                 
-                                <strong>Exercise Category :</strong>
+                                <strong>گروه تمرینی :</strong>
                                 {% render_field form.exercise_category type="text" class="form-control choosebox"%}
                                 
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Image :</strong>
+                                <strong>تصویر :</strong>
                                 {% render_field form.exercise_image type="file" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Exercise Details :</strong>
+                                <strong>جزئيات تمرین :</strong>
                                 {% render_field form.exercise_details type="text" class="form-control choosebox"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-12">
-                                <button type="submit" >Save</button>
+                                <button type="submit" >ثبت تمرین جدید</button>
                                 </div>
                             </div>
                     </div>

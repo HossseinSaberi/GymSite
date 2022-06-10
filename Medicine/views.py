@@ -6,8 +6,9 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-from Medicine.forms import CreateOrEditMedicine, CreateOrEditMedicinePlan, EditMedicinePlanItem, CreateOrEditMedicineCategory , CreateMedicinePlanItem
+from Medicine.forms import CreateOrEditMedicine, CreateOrEditMedicinePlan, EditMedicinePlanItem, CreateOrEditMedicineCategory, CreateMedicinePlanItem
 from Medicine.models import MedicinePlan, MedicinePlanItems, Medicine, MedicineCategory
+from Users.models import Athlete
 
 # Create your views here.
 
@@ -55,6 +56,14 @@ class MedicinePlanList(LoginRequiredMixin, ListView):
     template_name = 'Plans/MedicinePlans/MedicinePlanList.html'
     context_object_name = 'AllMedicinePlan'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query_set = self.get_queryset()
+        context["all_person"] = Athlete.objects.all()
+        context["all_status"] = ["افزایش وزن" , "کاهش وزن" , "کات"]
+        return context
+
+
 
 class EditMedicinePlan(LoginRequiredMixin, UpdateView):
     model = MedicinePlan
@@ -101,7 +110,7 @@ class CreateMedicineCategory(LoginRequiredMixin, CreateView):
     model = MedicineCategory
     template_name = 'Medicine/MedicineCategory/CreateMedicineCategory.html'
     form_class = CreateOrEditMedicineCategory
-    success_url = '/manage_medicine/CreateMedicineCategory/'
+    success_url = '/manage_medicine/'
 
 
 class EditMedicineCategory(LoginRequiredMixin, UpdateView):

@@ -6,41 +6,41 @@
 <div class="container spad">
     <div class="row pt-5 justify-content-center">
         <div class="col-lg-6">
-            <div class="section-title chart-calculate-title">
-                <span>For Your Plans</span>
-                <h2>Medicine Plan Item Creator</h2>
+            <div class="section-title chart-calculate-title text-right">
+                <h2 style="color : #fff">اضافه کردن مکمل در برنامه</h2>
+                <span>اطلاعات مربوط به مکمل را وارد نمایید</span>
             </div>
             <div class="chart-calculate-form">
-                    <form method="POST" enctype='multipart/form-data' id="medicine_plan_item_input_form">
+                    <form method="POST" enctype='multipart/form-data' class="form-strong" id="medicine_plan_item_input_form">
 
                         {%csrf_token%}
                             <div class="form-group col-md-12">
-                            <strong>Medicine Plan :</strong>
-                            {% render_field form.medicine_plan type="text" class="form-control choosebox"%}
+                            <strong>برنامه دارویی :</strong>
+                            {% render_field form.medicine_plan type="text" style="color: whitesmoke;" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Medicine Category : </strong>
-                                {% render_field form.medicine_category type="text" class="form-control choosebox"%}
+                                <strong>گروه دارویی : </strong>
+                                {% render_field form.medicine_category type="text" style="color: whitesmoke;" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Medicine : </strong>
-                                {% render_field form.medicine type="text" class="form-control choosebox"%}
+                                <strong>مکمل : </strong>
+                                {% render_field form.medicine type="text" style="color: whitesmoke;" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Count : </strong>
-                                {% render_field form.count type="text" class="form-control choosebox"%}
+                                <strong>تعداد یا مقدار : </strong>
+                                {% render_field form.count type="text" style="color: whitesmoke;" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Day : </strong>
-                                {% render_field form.days type="text" class="form-control choosebox"%}
+                                <strong>روز : </strong>
+                                {% render_field form.days type="text" style="color: whitesmoke;" class="form-control choosebox"%}
                             </div>
                             <div class="form-group col-md-12">
-                                <strong>Details : </strong>
-                                    {% render_field form.medicine_details type="text" class="form-control choosebox"%}
+                                <strong>جزئيات مکمل : </strong>
+                                    {% render_field form.medicine_details type="text" style="color: whitesmoke;" class="form-control choosebox"%}
                             </div>
                             <div class="d-flex justify-content-center mb-4">
                                 <div class="col-md-12">
-                                <button type="submit" >Save</button>
+                                <button type="submit" >ثبت مکمل جدید</button>
                                 </div>
                             </div>
                     </div>
@@ -55,22 +55,22 @@
         <thead class=" text-primary">
           <tr>
             <th>
-                Medicine
+                مکمل
             </th>
             <th>
-                Medicine Category
+                گروه دارویی
             </th>
             <th>
-                Count
+                تعداد یا مقدار
             </th>
             <th>
-                Medicine Details
+                جزئيات مکمل
             </th>
             <th>
-                Day
+                روز
             </th>
             <th>
-                MANAGE
+                . . .
             </th>
           </tr>
         </thead>    
@@ -95,10 +95,10 @@
                 </td>
                 <td>
                     <div >
-                        <a class='d-inline-block border-2 mx-3' href="/{{object.id}}/DeleteConfirmMedicinePlanItem/" id="manage-icon">
+                        <a class='d-inline-block border-2 mx-3' onclick="Delete('/{{object.id}}/DeleteConfirmMedicinePlanItem/')" id="manage-icon">
                           <i class='fa fa-trash'></i>
                         </a>
-                        <a class='d-inline-block border-2 mx-3' href="{{object.id}}/" id="manage-icon">
+                        <a class='d-inline-block border-2 mx-3' onclick="Edit('{{object.pk}}/')" id="manage-icon">
                           <i class='fa fa-edit'></i>
                         </a>
                       </div>
@@ -111,6 +111,36 @@
     </div>
   </div>
 </div>
+<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="myModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Delete(url) {
+        $.get(url, function (result) {
+            $("#myModal").modal('show');
+            $("#myModalLabel").html("Delete Exercise Plan");
+            $("#myModalBody").html(result);
+        });
+    }
 
-
+    function Edit(url) {
+        $.get(url, function (result) {
+          $("#myModal").modal('show');
+          $("#myModalLabel").html("Edit Exercise Plan");
+          $("#myModalBody").html(result);
+        });
+      }
+</script>
 {% endblock MedicinePlansItemList %}
